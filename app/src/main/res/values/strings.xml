@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">expenseTracker</string>
+    <string name="imgViewCat">Category img</string>
 </resources>
