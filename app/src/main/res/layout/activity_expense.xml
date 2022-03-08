@@ -71,29 +71,13 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/editTxtDecimal"
+        android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
-        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
         app:layout_constraintTop_toBottomOf="@+id/btnSelectDate" />
-
-    <Spinner
-        android:id="@+id/spinnerPaymentMethods"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@null"
-        android:entries="@array/paymentMethod"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTxtDecimal"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26999998" />
 
     <Button
         android:id="@+id/btnChooseCategory"

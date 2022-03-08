@@ -25,8 +25,6 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
     Button btnChooseCategory;
     Calendar calendar;
     TextView txtViewDate;
-    private ArrayList<com.example.expensetracker.paymentMethodItem> mPaymentMethodList;
-    private paymentMethodAdapter mAdapter;
     GridView gridViewCategory;
     int[] imgCategories = {R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category,
             R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category,
@@ -53,26 +51,6 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
             datePicker.show(getSupportFragmentManager(), "date picker");
         });
 
-        initList();
-        Spinner spinnerPaymentMethods = findViewById(R.id.spinnerPaymentMethods);
-
-        mAdapter = new paymentMethodAdapter(this, mPaymentMethodList);
-        spinnerPaymentMethods.setAdapter(mAdapter);
-
-        spinnerPaymentMethods.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                com.example.expensetracker.paymentMethodItem clickedItem = (com.example.expensetracker.paymentMethodItem) adapterView.getItemAtPosition(i);
-                String clickedPaymentMethods = clickedItem.getPaymentMethod();
-                Toast.makeText(ExpenseActivity.this, clickedPaymentMethods + " selected", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
         btnChooseCategory.setOnClickListener((View view) -> {
             gridViewCategory = findViewById(R.id.gridViewCategories);
             com.example.expensetracker.categoryAdapter cAdapter = new com.example.expensetracker.categoryAdapter(txtCategories, imgCategories, this);
@@ -91,10 +69,4 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
         txtViewDate.setText(currentDate);
     }
 
-    private void initList() {
-        mPaymentMethodList = new ArrayList<>();
-        mPaymentMethodList.add(new com.example.expensetracker.paymentMethodItem("Cash", "CAD", R.drawable.ic_cash));
-        mPaymentMethodList.add(new com.example.expensetracker.paymentMethodItem("Credit", "CAD", R.drawable.ic_credit_card));
-        mPaymentMethodList.add(new com.example.expensetracker.paymentMethodItem("Debit", "CAD", R.drawable.ic_debit_card));
-    }
 }
