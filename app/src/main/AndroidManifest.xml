@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".IncomeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ExpenseActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
             android:name=".SearchActivity"
             android:exported="false" />
         <activity

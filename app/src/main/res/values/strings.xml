@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">expenseTracker</string>
     <string name="imgViewCat">Category img</string>
+    <string name="imgViewCalendar">Calendar image</string>
+    <string name="btnSelectDate">To select date</string>
+    <string name="txtViewDate">WEEKDAY, MM DD, YYYY</string>
+    <string name="editTxtDecimal">Enter an amount</string>
+    <string name="imgViewPaymentMethod">Payment method image</string>
+    <string name="txtCanadianCurrency">CAD</string>
+    <string name="txtViewPaymentMethod">Payment method</string>
+    <string name="editTxtNotes">Notes</string>
+    <string name="btnChooseCategory">Choose Category</string>
+    <string name="txtViewExpensePageTitle">Add Expense</string>
+    <string name="txtViewIncomePageTitle">Add Income</string>
 </resources>

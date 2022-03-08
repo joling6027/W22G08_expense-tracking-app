@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="paymentMethod">Payment methods
+        <item>Cash</item>
+        <item>Credit</item>
+        <item>Debit</item>
+    </string-array>
+</resources>

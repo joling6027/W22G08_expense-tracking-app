@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExpenseActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary_dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <TextView
+            android:id="@+id/txtViewExpensePageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/txtViewExpensePageTitle"
+            tools:layout_editor_absoluteX="168dp"
+            tools:layout_editor_absoluteY="18dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/imgViewCalendar"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSelectDate"
+        app:layout_constraintEnd_toStartOf="@+id/txtViewDate"
+        app:layout_constraintStart_toStartOf="@+id/btnSelectDate"
+        app:layout_constraintTop_toTopOf="@+id/btnSelectDate"
+        app:srcCompat="@drawable/ic_calendar" />
+
+    <Button
+        android:id="@+id/btnSelectDate"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/btnSelectDate"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/toolBar"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/toolBar"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar"
+        tools:ignore="RedundantDescriptionCheck" />
+
+    <TextView
+        android:id="@+id/txtViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:text="@string/txtViewDate"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSelectDate"
+        app:layout_constraintEnd_toEndOf="@+id/btnSelectDate"
+        app:layout_constraintStart_toStartOf="@+id/btnSelectDate"
+        app:layout_constraintTop_toTopOf="@+id/btnSelectDate" />
+
+    <EditText
+        android:id="@+id/editTxtDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="@string/editTxtDecimal"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:imeOptions="actionDone"
+        app:layout_constraintEnd_toEndOf="@+id/toolBar"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="@+id/toolBar"
+        app:layout_constraintTop_toBottomOf="@+id/btnSelectDate" />
+
+    <Spinner
+        android:id="@+id/spinnerPaymentMethods"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@null"
+        android:entries="@array/paymentMethod"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editTxtDecimal"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26999998" />
+
+    <Button
+        android:id="@+id/btnChooseCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnChooseCategory"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal"
+        app:layout_constraintVertical_bias="0.794" />
+
+    <EditText
+        android:id="@+id/editTxtNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/editTxtNotes"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/toolBar"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/toolBar"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal"
+        app:layout_constraintVertical_bias="0.186" />
+
+    <GridView
+        android:id="@+id/gridViewCategories"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:numColumns="4"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtNotes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
