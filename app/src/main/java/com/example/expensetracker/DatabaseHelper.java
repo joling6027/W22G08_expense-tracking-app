@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOTE = "COLUMN_NOTE";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
     public static final String COLUMN_DATE = "COLUMN_DATE";
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "data.db", null, 1);
