@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    app:navigationIcon="@drawable/search"
+    app:title="AbhiAndroid"
+    app:titleTextColor="#FFF">
+    <!-- navigation button and title for the Toolbar-->
+</androidx.appcompat.widget.Toolbar>

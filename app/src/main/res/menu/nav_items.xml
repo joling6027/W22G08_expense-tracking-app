@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--
+                Add menu items here
+                Menu items with icon and Title
+        -->
+        <item
+            android:id="@+id/month"
+            android:title="Month" />
+        <item
+            android:id="@+id/year"
+            android:title="Year" />
+        <item
+            android:id="@+id/day"
+            android:title="choose a day" />
+
+    </group>
+</menu>
