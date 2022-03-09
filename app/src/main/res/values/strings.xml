@@ -12,4 +12,5 @@
     <string name="btnChooseCategory">Choose Category</string>
     <string name="txtViewExpensePageTitle">Add Expense</string>
     <string name="txtViewIncomePageTitle">Add Income</string>
+    <string name="search_hint">input categary to find</string>
 </resources>
