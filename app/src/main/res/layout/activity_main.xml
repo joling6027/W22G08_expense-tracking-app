@@ -27,7 +27,7 @@
             android:layout_marginBottom="16dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:background="#49B728"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/txtViewInterval"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -50,161 +50,161 @@
 
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtViewInterval"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
+            android:gravity="center"
             android:text="Hello World!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
-
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/imgViewDentist"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
             android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
+            app:srcCompat="@drawable/toothbrush" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/imgViewSport"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
             android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
+            app:srcCompat="@drawable/soccerplayer" />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/imgViewMedicine"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
             android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
+            app:srcCompat="@drawable/thermometer" />
 
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/imgViewGift"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="46dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView10"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintStart_toEndOf="@+id/imgViewPhoneCharge"
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
+            app:srcCompat="@drawable/gift" />
 
         <ImageView
-            android:id="@+id/imageView10"
+            android:id="@+id/imgViewPhoneCharge"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="46dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView9"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
+            app:layout_constraintStart_toEndOf="@+id/imgViewClothes"
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
             app:srcCompat="@drawable/phone" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/imgViewClothes"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="46dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintStart_toEndOf="@+id/imgViewPet"
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
+            app:srcCompat="@drawable/tshirt" />
 
         <ImageView
-            android:id="@+id/imageView8"
+            android:id="@+id/imgViewPet"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="46dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
+            app:srcCompat="@drawable/cat" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imgViewTaxi"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="46dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
+            app:srcCompat="@drawable/taxi" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/imgViewDrink"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="46dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
+            app:srcCompat="@drawable/drink" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imgViewTrans"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="46dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
+            app:srcCompat="@drawable/train" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgViewEatOut"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintStart_toEndOf="@+id/imgViewCar"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
+            app:srcCompat="@drawable/fork" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgViewCar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintStart_toEndOf="@+id/imgViewHouse"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
+            app:srcCompat="@drawable/car" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgViewDiet"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
+            app:srcCompat="@drawable/diet" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgViewHouse"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:srcCompat="@drawable/phone" />
+            app:layout_constraintStart_toEndOf="@+id/imgViewDiet"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
+            app:srcCompat="@drawable/home" />
 
         <ImageView
-            android:id="@+id/imageView15"
+            android:id="@+id/imageViewExpense"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="82dp"
@@ -214,7 +214,7 @@
             app:srcCompat="@drawable/minus" />
 
         <ImageView
-            android:id="@+id/imageView16"
+            android:id="@+id/imageViewIncome"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
@@ -224,19 +224,20 @@
             app:srcCompat="@drawable/plus" />
 
         <TextView
+            android:id="@+id/txViewSummary"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginStart="23dp"
             android:layout_marginTop="65dp"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="89dp"
+            android:background="@drawable/circumference"
             android:gravity="center"
             android:text="TextView"
-            android:background="@drawable/circumference"
-            app:layout_constraintBottom_toTopOf="@+id/imageView10"
-            app:layout_constraintEnd_toStartOf="@+id/imageView14"
-            app:layout_constraintStart_toEndOf="@+id/imageView7"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintBottom_toTopOf="@+id/imgViewPhoneCharge"
+            app:layout_constraintEnd_toStartOf="@+id/imgViewDentist"
+            app:layout_constraintStart_toEndOf="@+id/imgViewTaxi"
+            app:layout_constraintTop_toBottomOf="@+id/imgViewCar" />
 
         <Button
             android:id="@+id/button"
@@ -249,7 +250,7 @@
             android:text="Balance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewClothes" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

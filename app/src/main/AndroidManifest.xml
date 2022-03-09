@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
+        <meta-data android:name="android.app.default_searchable"
+            android:value=".SearchActivity" />
         <activity
             android:name=".IncomeActivity"
             android:exported="false"
@@ -35,8 +37,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.default_searchable"
-                android:value=".SearchActivity" />
+
         </activity>
     </application>
 
