@@ -18,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class IncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     Toolbar toolBar;
@@ -26,18 +27,13 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
     Calendar calendar;
     TextView txtViewDate;
     GridView gridViewCategory;
-    int[] imgCategories = {R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category,
-            R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category,
-            R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category,
-            R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category, R.drawable.ic_category};
-    String[] txtCategories = {"Deposits", "Food", "Clothing", "Movie", "Travel", "Transit", "Salary", "Savings",
-            "Deposits", "Food", "Clothing", "Movie", "Travel", "Transit", "Salary", "Savings",
-            "Deposits", "Food", "Clothing", "Movie", "Travel", "Transit", "Salary", "Savings"};
+    List<CategoryItem> categoryItemList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_income);
+        setContentView(R.layout.activity_expense);
+        addData();
 
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
@@ -53,7 +49,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
 
         btnChooseCategory.setOnClickListener((View view) -> {
             gridViewCategory = findViewById(R.id.gridViewCategories);
-            com.example.expensetracker.categoryAdapter cAdapter = new com.example.expensetracker.categoryAdapter(txtCategories, imgCategories, this);
+            CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
             gridViewCategory.setAdapter(cAdapter);
         });
     }
@@ -67,5 +63,13 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         txtViewDate = (TextView) findViewById(R.id.txtViewDate);
         txtViewDate.setText(currentDate);
+    }
+
+    private void addData() {
+        categoryItemList.add(new CategoryItem(101, "Foods", R.drawable.ic_category));
+        categoryItemList.add(new CategoryItem(102, "Transit", R.drawable.ic_category));
+        categoryItemList.add(new CategoryItem(103, "Clothing", R.drawable.ic_category));
+        categoryItemList.add(new CategoryItem(104, "Entertainment", R.drawable.ic_category));
+        categoryItemList.add(new CategoryItem(105, "Travel", R.drawable.ic_category));
     }
 }
