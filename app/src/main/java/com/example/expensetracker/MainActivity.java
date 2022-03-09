@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -77,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
         textViewInterval=findViewById(R.id.txtViewInterval);
         monthName = Month.of(mMonth+1);
         textViewInterval.setText(mDay+" "+monthName+" "+mYear);
+
+
+
+        //balance button
+        Button computeBalance=findViewById(R.id.btnBalance);
+        computeBalance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,BalanceActivity.class));
+            }
+        });
 
 
 

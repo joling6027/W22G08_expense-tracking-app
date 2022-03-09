@@ -9,25 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
-        <meta-data android:name="android.app.default_searchable"
+        <activity
+            android:name=".BalanceActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="android.app.default_searchable"
             android:value=".SearchActivity" />
+
         <activity
             android:name=".IncomeActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustNothing"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".ExpenseActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustNothing"/>
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".SearchActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
+
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
         <activity
@@ -35,9 +43,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

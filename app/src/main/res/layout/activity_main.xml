@@ -210,7 +210,7 @@
             android:layout_marginStart="82dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/minus" />
 
         <ImageView
@@ -220,7 +220,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="82dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
+            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/plus" />
 
         <TextView
@@ -240,7 +240,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgViewCar" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnBalance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
