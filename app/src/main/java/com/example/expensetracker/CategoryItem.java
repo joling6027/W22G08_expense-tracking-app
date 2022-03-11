@@ -1,37 +1,27 @@
 package com.example.expensetracker;
 
 public class CategoryItem {
-    int categoryImgId;
-    String categoryImgName;
-    int categoryImgPic;
+    String categoryName;
+    int categoryPic;
 
-    public CategoryItem(int categoryImgId, String categoryImgName, int categoryImgPic) {
-        this.categoryImgId = categoryImgId;
-        this.categoryImgName = categoryImgName;
-        this.categoryImgPic = categoryImgPic;
+    public CategoryItem(String categoryName, int categoryPic) {
+        this.categoryName = categoryName;
+        this.categoryPic = categoryPic;
     }
 
-    public int getCategoryImgId() {
-        return categoryImgId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryImgId(int categoryImgId) {
-        this.categoryImgId = categoryImgId;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getCategoryImgName() {
-        return categoryImgName;
+    public int getCategoryPic() {
+        return categoryPic;
     }
 
-    public void setCategoryImgName(String categoryImgName) {
-        this.categoryImgName = categoryImgName;
-    }
-
-    public int getCategoryImgPic() {
-        return categoryImgPic;
-    }
-
-    public void setCategoryImgPic(int categoryImgPic) {
-        this.categoryImgPic = categoryImgPic;
+    public void setCategoryPic(int categoryPic) {
+        this.categoryPic = categoryPic;
     }
 }

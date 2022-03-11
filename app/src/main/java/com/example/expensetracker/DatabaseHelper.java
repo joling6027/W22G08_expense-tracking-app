@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOTE = "COLUMN_NOTE";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
     public static final String COLUMN_DATE = "COLUMN_DATE";
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-DD");
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "data.db", null, 1);
@@ -42,25 +42,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
+
     public boolean addData(ExpenseNIncomeModel expenseNIncomeModel){
-
-        SQLiteDatabase db =this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-
-        String dateStr = dateFormat.format(expenseNIncomeModel.getDate());
-
-        cv.put(COLUMN_DATE,dateStr);
-        cv.put(COLUMN_CATEGORY,expenseNIncomeModel.getCategory());
-        cv.put(COLUMN_NOTE,expenseNIncomeModel.getNote());
-        cv.put(COLUMN_AMOUNT,expenseNIncomeModel.getAmount());
-
-        long insert = db.insert(EXPENSE_TABLE, null, cv);
-        if(insert == -1){
+        try {
+            SQLiteDatabase db =this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(COLUMN_DATE, dateFormat.format(expenseNIncomeModel.getDate()));
+            cv.put(COLUMN_CATEGORY,expenseNIncomeModel.getCategory());
+            cv.put(COLUMN_AMOUNT,expenseNIncomeModel.getAmount());
+            cv.put(COLUMN_NOTE,expenseNIncomeModel.getNote());
+            return db.insert(EXPENSE_TABLE, null, cv) > 0;
+        } catch (Exception ex) {
             return false;
-        }else{
-            return true;
         }
     }
+
     public List<ExpenseNIncomeModel> getSearchedData(String item){
 
         //create an empty arrayList
