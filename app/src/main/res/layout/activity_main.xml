@@ -68,7 +68,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
             app:srcCompat="@drawable/toothbrush" />
@@ -78,7 +78,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
             app:srcCompat="@drawable/soccerplayer" />
@@ -88,7 +88,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="320dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
             app:srcCompat="@drawable/thermometer" />
@@ -98,7 +98,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewPhoneCharge"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
             app:srcCompat="@drawable/gift" />
@@ -108,7 +108,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewClothes"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
             app:srcCompat="@drawable/phone" />
@@ -118,7 +118,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewPet"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
             app:srcCompat="@drawable/tshirt" />
@@ -128,7 +128,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
             app:srcCompat="@drawable/cat" />
@@ -138,7 +138,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
             app:srcCompat="@drawable/taxi" />
@@ -148,7 +148,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
             app:srcCompat="@drawable/drink" />
@@ -158,7 +158,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
             app:srcCompat="@drawable/train" />
@@ -168,7 +168,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewCar"
             app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
             app:srcCompat="@drawable/fork" />
@@ -178,7 +178,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewHouse"
             app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
             app:srcCompat="@drawable/car" />
@@ -188,7 +188,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
             app:srcCompat="@drawable/diet" />
@@ -198,7 +198,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/imgViewDiet"
             app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
             app:srcCompat="@drawable/home" />
@@ -207,8 +207,7 @@
             android:id="@+id/imageViewExpense"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewIncome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/minus" />
@@ -217,34 +216,34 @@
             android:id="@+id/imageViewIncome"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="82dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBalance"
+            app:layout_constraintStart_toEndOf="@+id/imageViewExpense"
             app:srcCompat="@drawable/plus" />
 
         <TextView
             android:id="@+id/txViewSummary"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="65dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginBottom="89dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/circumference"
             android:gravity="center"
             android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/imgViewPhoneCharge"
             app:layout_constraintEnd_toStartOf="@+id/imgViewDentist"
             app:layout_constraintStart_toEndOf="@+id/imgViewTaxi"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewCar" />
+            app:layout_constraintTop_toBottomOf="@+id/imgViewCar"
+            app:layout_constraintVertical_bias="0.44" />
 
         <Button
             android:id="@+id/btnBalance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
             android:backgroundTint="#EC9089"
             android:text="Balance"

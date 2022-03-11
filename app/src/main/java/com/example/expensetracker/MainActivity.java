@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         // implement setNavigationOnClickListener event
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
