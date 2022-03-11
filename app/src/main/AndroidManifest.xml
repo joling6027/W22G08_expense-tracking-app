@@ -29,7 +29,8 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".SearchActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

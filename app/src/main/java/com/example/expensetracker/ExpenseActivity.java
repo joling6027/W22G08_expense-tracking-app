@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,8 +17,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ExpenseActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -26,13 +29,17 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
     Button btnChooseCategory;
     Calendar calendar;
     TextView txtViewDate;
+    TextView editTxtNotes;
+    EditText editTxtDecimal;
     GridView gridViewCategory;
     List<CategoryItem> categoryItemList = new ArrayList<>();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
+
         addData();
 
         toolBar = findViewById(R.id.toolBar);
@@ -41,6 +48,9 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
 
         btnSelectDate = findViewById(R.id.btnSelectDate);
         btnChooseCategory = findViewById(R.id.btnChooseCategory);
+        gridViewCategory = findViewById(R.id.gridViewCategories);
+        editTxtNotes = findViewById(R.id.txtViewNote);
+        editTxtDecimal = findViewById(R.id.editTxtDecimal);
 
         btnSelectDate.setOnClickListener((View view) -> {
             DialogFragment datePicker = new DatePickerFragment();
@@ -48,11 +58,15 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
         });
 
         btnChooseCategory.setOnClickListener((View view) -> {
-            gridViewCategory = findViewById(R.id.gridViewCategories);
+
             CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
             gridViewCategory.setAdapter(cAdapter);
+            //set gridView OnItemClickListener
+
         });
+
     }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

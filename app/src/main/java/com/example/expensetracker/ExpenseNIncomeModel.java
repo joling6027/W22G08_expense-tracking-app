@@ -8,28 +8,17 @@ public class ExpenseNIncomeModel {
     private Date date;
     private String category;
     private String note;
-    private double amount;
+    private double expense;
 
-    public ExpenseNIncomeModel(int id, Date date, String category, String note, double amount) {
+    public ExpenseNIncomeModel(int id, Date date, String category, String note, double expense) {
         this.id = id;
         this.date = date;
         this.category = category;
         this.note = note;
-        this.amount = amount;
+        this.expense = expense;
     }
 
     public ExpenseNIncomeModel() {
-    }
-
-    @Override
-    public String toString() {
-        return "ExpenseNIncomeModel{" +
-                "id=" + id +
-                ", date=" + date +
-                ", category='" + category + '\'' +
-                ", note='" + note + '\'' +
-                ", amount=" + amount +
-                '}';
     }
 
     public int getId() {
@@ -64,11 +53,10 @@ public class ExpenseNIncomeModel {
         this.note = note;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getExpense() {
+        return expense;
     }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setExpense(double expense) {
+        this.expense = expense;
     }
 }
