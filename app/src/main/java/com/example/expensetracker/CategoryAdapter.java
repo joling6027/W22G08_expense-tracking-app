@@ -42,10 +42,8 @@ public class CategoryAdapter extends ArrayAdapter {
         TextView txtViewCategories = view.findViewById(R.id.txtViewCategory);
         ImageView imgViewCategories = view.findViewById(R.id.imgViewCategory);
 
-        CategoryItem categoryItem = categoryItemList.get(i);
-
-        txtViewCategories.setText(categoryItemList.get(i).getCategoryImgName());
-        imgViewCategories.setImageResource(categoryItemList.get(i).getCategoryImgPic());
+        txtViewCategories.setText(categoryItemList.get(i).getCategoryName());
+        imgViewCategories.setImageResource(categoryItemList.get(i).getCategoryPic());
 
         return view;
     }

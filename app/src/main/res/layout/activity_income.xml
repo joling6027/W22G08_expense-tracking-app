@@ -8,10 +8,10 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary_dark"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="#49B728"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         android:id="@+id/btnSelectDate"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:contentDescription="@string/btnSelectDate"
         android:textColor="#000000"
@@ -69,7 +69,7 @@
         android:id="@+id/editTxtDecimal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/editTxtDecimal"
         android:imeOptions="actionDone"
@@ -84,28 +84,27 @@
         android:id="@+id/btnChooseCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/btnChooseCategory"
-        app:layout_constraintBottom_toTopOf="@+id/editTxtNotes"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal"
-        app:layout_constraintVertical_bias="0.794" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtNotes" />
 
     <EditText
         android:id="@+id/editTxtNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/editTxtNotes"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal" />
 
     <GridView
         android:id="@+id/gridViewCategories"
@@ -115,12 +114,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:numColumns="4"
         android:horizontalSpacing="8dp"
+        android:numColumns="4"
         android:verticalSpacing="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtNotes" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChooseCategory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
