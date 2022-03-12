@@ -8,14 +8,21 @@ public class ExpenseNIncomeModel {
     private Date date;
     private String category;
     private String note;
-    private double expense;
+    private double amount;
 
-    public ExpenseNIncomeModel(int id, Date date, String category, String note, double expense) {
+    public ExpenseNIncomeModel(int id, Date date, String category, String note, double amount) {
         this.id = id;
         this.date = date;
         this.category = category;
         this.note = note;
-        this.expense = expense;
+        this.amount = amount;
+    }
+
+    public ExpenseNIncomeModel(int id, String category, String note, double amount) {
+        this.id = id;
+        this.category = category;
+        this.note = note;
+        this.amount = amount;
     }
 
     public ExpenseNIncomeModel() {
@@ -53,10 +60,10 @@ public class ExpenseNIncomeModel {
         this.note = note;
     }
 
-    public double getExpense() {
-        return expense;
+    public double getAmount() {
+        return amount;
     }
-    public void setExpense(double expense) {
-        this.expense = expense;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
