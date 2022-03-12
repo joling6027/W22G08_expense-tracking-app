@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -18,7 +22,8 @@ public class SearchActivity extends AppCompatActivity {
     List<ExpenseNIncomeModel> populateList;
     String query;
     Toolbar toolBar2;
-    ArrayAdapter arrayAdapter;
+//    ArrayAdapter arrayAdapter;
+    DatabaseHelper databaseHelper;
 
 
     @Override
@@ -30,31 +35,38 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolBar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        databaseHelper = new DatabaseHelper(SearchActivity.this);
         listViewResults = findViewById(R.id.listViewResults);
+
         try {
             if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
                 query = getIntent().getStringExtra(SearchManager.QUERY);
                 Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
 
-                //use the query to search your data somehow
-                DatabaseHelper databaseHelper = new DatabaseHelper(SearchActivity.this);
-                populateList = databaseHelper.getSearchedData(query); //item get from MainActivity
+//                Cursor data = (Cursor) databaseHelper.getSearchedData(query);
+//                populateList = databaseHelper.getSearchedData(query); //item get from MainActivity
 
-                //can I use searchListAdapter here?
-                arrayAdapter = new ArrayAdapter(SearchActivity.this,android.R.layout.simple_list_item_1,databaseHelper.getSearchedData(query));
-                listViewResults.setAdapter(arrayAdapter);
+//                final SimpleCursorAdapter simpleCursorAdapter = databaseHelper.populateListViewFromDb();
+//                listViewResults.setAdapter(simpleCursorAdapter);
+
+//                if(data.getCount() == 0){
+//                    Toast.makeText(SearchActivity.this, "The database was empty", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    while(data.moveToNext()){
+//                        populateList.add();
+//                    }
+//                }
+//                arrayAdapter = new ArrayAdapter(SearchActivity.this,android.R.layout.simple_list_item_1,databaseHelper.getSearchedData(query));
+                populateList = databaseHelper.getSearchedData(query);
+
+                SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
+                listViewResults.setAdapter(searchListAdapter);
             }
 
         }catch (Exception ex){
             Toast.makeText(SearchActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
         }
-
-//        SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
-//        listViewResults.setAdapter(searchListAdapter);
-
-
-//create a expenseNIncomeModel object and set bundle data in it (?)
 
 
     }

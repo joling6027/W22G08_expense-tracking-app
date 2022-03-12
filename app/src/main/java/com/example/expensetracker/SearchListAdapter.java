@@ -4,33 +4,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class SearchListAdapter extends BaseAdapter {
-    List<ExpenseNIncomeModel> transactionList;
+    List<ExpenseNIncomeModel> searchedList;
 
-    public SearchListAdapter(List<ExpenseNIncomeModel> transactionList) {
-        this.transactionList = transactionList;
+    public SearchListAdapter(List<ExpenseNIncomeModel> searchedList) {
+        this.searchedList = searchedList;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return searchedList.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public ExpenseNIncomeModel getItem(int i) {
+        return searchedList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return searchedList.get(i).getId();
     }
 
     @Override
@@ -46,10 +43,10 @@ public class SearchListAdapter extends BaseAdapter {
         TextView txtViewAmount = view.findViewById(R.id.txtViewAmount);
 
 //        imgViewCat.setImageResource();
-            txtViewCategory.setText(transactionList.get(i).getCategory());
-            txtViewDate.setText(transactionList.get(i).getDate().toString());
-            txtViewNote.setText(transactionList.get(i).getNote());
-            txtViewAmount.setText((int) transactionList.get(i).getExpense());
+            txtViewCategory.setText(searchedList.get(i).getCategory());
+            txtViewDate.setText(searchedList.get(i).getDate().toString());
+            txtViewNote.setText(searchedList.get(i).getNote());
+            txtViewAmount.setText((int) searchedList.get(i).getAmount());
 
         return view;
     }

@@ -44,7 +44,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-//        db.execSQL("DROP IF TABLE EXISTS " + EXPENSE_TABLE);
+        // Drop older table if exist
+        db.execSQL("DROP TABLE IF EXISTS " + EXPENSE_TABLE);
+        // Create tables again
+        onCreate(db);
     }
 
     public boolean addData(ExpenseNIncomeModel expenseNIncomeModel){
@@ -94,9 +97,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Date date = dateFormat.parse(dateStr);
                 ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,amount);
                 returnList.add(expenseNIncomeModel1);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
-                    Toast.makeText(context, "parse error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "date parse error", Toast.LENGTH_SHORT).show();
                 }catch (Exception ex){
                     ex.printStackTrace();
                 }
@@ -106,20 +110,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
-    public SimpleCursorAdapter populateListViewFromDb(){
-        String columns[] = {DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
-        Cursor cursor = db.query(DatabaseHelper.EXPENSE_TABLE, columns,null,null,null,null,null);
-        int[] toViewIds = new int[]{R.id.txtViewCategory,R.id.txtViewDate,R.id.txtViewNote,R.id.txtViewAmount};
-        String[] fromFieldNames = new String[]{DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
-        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
-                context,
-                R.layout.layout_searchitem,
-                cursor,
-                fromFieldNames,
-                toViewIds
-        );
-        return simpleCursorAdapter;
-    }
+//    public SimpleCursorAdapter populateListViewFromDb(){
+//        String columns[] = {DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
+//        Cursor cursor = db.query(DatabaseHelper.EXPENSE_TABLE, columns,null,null,null,null,null);
+//        int[] toViewIds = new int[]{R.id.txtViewCategory,R.id.txtViewDate,R.id.txtViewNote,R.id.txtViewAmount};
+//        String[] fromFieldNames = new String[]{DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
+//        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
+//                context,
+//                R.layout.layout_searchitem,
+//                cursor,
+//                fromFieldNames,
+//                toViewIds
+//        );
+//        return simpleCursorAdapter;
+//    }
 
 
 }
