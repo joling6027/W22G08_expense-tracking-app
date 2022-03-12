@@ -59,6 +59,10 @@ public class SearchActivity extends AppCompatActivity {
 //                arrayAdapter = new ArrayAdapter(SearchActivity.this,android.R.layout.simple_list_item_1,databaseHelper.getSearchedData(query));
                 populateList = databaseHelper.getSearchedData(query);
 
+                //for test only
+                String showStr = populateList.get(0).getCategory() + ">> " + populateList.get(0).getAmount();
+                Toast.makeText(SearchActivity.this, showStr, Toast.LENGTH_SHORT).show();
+
                 SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
                 listViewResults.setAdapter(searchListAdapter);
             }

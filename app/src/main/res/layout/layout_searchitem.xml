@@ -34,5 +34,6 @@
         android:layout_height="match_parent"
         android:layout_weight="0.2"
         android:gravity="center|left"
+        android:inputType="number"
         android:text="$5" />
 </LinearLayout>

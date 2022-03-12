@@ -46,7 +46,7 @@ public class SearchListAdapter extends BaseAdapter {
             txtViewCategory.setText(searchedList.get(i).getCategory());
             txtViewDate.setText(searchedList.get(i).getDate().toString());
             txtViewNote.setText(searchedList.get(i).getNote());
-            txtViewAmount.setText((int) searchedList.get(i).getAmount());
+            txtViewAmount.setText(Double.toString(searchedList.get(i).getAmount()));
 
         return view;
     }
