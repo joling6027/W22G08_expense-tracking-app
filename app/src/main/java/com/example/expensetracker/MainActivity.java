@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -58,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     Date selectedDate;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     CategoryAdapterHome cAdapter;
+    double expense;
+    double income;
+    TextView textViewSummary;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -97,13 +101,18 @@ public class MainActivity extends AppCompatActivity {
         selectedDate=calendar.getTime();
         databaseHelper = new DatabaseHelper(MainActivity.this);
 
-            addData();
-            populateList = databaseHelper.getDataByDate(selectedDate);
-            Log.d("myApp",calendar.getTime().toString());
+        addData();
+        populateList = databaseHelper.getDataByDate(selectedDate);
+        Log.d("myApp",calendar.getTime().toString());
 
-            gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
-            cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
-            gridViewCategoryHome.setAdapter(cAdapter);
+        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
+        cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
+        gridViewCategoryHome.setAdapter(cAdapter);
+
+
+        //setTextViewSummary
+        textViewSummary=findViewById(R.id.txtViewSummary);
+        getSummary(populateList);
 
 
 
@@ -115,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,BalanceActivity.class));
             }
         });
+
+        //
+
 
 
         // input expense
@@ -138,21 +150,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
+    }//end of oncreat
 
-    // add GridViewCategory
-//    private void addCategoryView() {
-//        addData();
-//        populateList = databaseHelper.getDataByDate(selectedDate);
-//        Log.d("myApp",calendar.getTime().toString());
-//
-//        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
-//        cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
-//        gridViewCategoryHome.setAdapter(cAdapter);
-//
-//
-//    }
-////////
+
+
+
+
 
     //NavigationDrawer
     private void setNavigationDrawer() {
@@ -169,15 +172,19 @@ public class MainActivity extends AppCompatActivity {
                     textViewInterval.setText(monthName.toString());
                     gridViewCategoryHome.setAdapter(cAdapter);
                     String month=mMonth>8?(mMonth+1)+"":"0"+(mMonth+1);
-                    cAdapter.setPopulateList(databaseHelper.getDataByMonth(month));
+                    populateList=databaseHelper.getDataByMonth(month);
+                    cAdapter.setPopulateList(populateList);
                     cAdapter.notifyDataSetChanged();
+                    getSummary(populateList);
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.year){
                     textViewInterval.setText(mYear+" ");
                     gridViewCategoryHome.setAdapter(cAdapter);
-                    cAdapter.setPopulateList(databaseHelper.getDataByYear(mYear+""));
+                    populateList=databaseHelper.getDataByYear(mYear+"");
+                    cAdapter.setPopulateList(populateList);
                     cAdapter.notifyDataSetChanged();
+                    getSummary(populateList);
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.day){
@@ -196,7 +203,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                             Log.d("selectedTime",selectedDate.toString());
                             gridViewCategoryHome.setAdapter(cAdapter);
-                            cAdapter.setPopulateList(databaseHelper.getDataByDate(selectedDate));
+                            populateList=databaseHelper.getDataByDate(selectedDate);
+                            cAdapter.setPopulateList(populateList);
+                            getSummary(populateList);
                             cAdapter.notifyDataSetChanged();
                         }
                     },mYear,mMonth,mDay);
@@ -226,6 +235,26 @@ public class MainActivity extends AppCompatActivity {
         simpleSearchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
         return true;
+    }
+
+    //update textViewSummary
+    private void getSummary(List<ExpenseNIncomeModel> populateList) {
+        double expense=0;
+        double income=0;
+
+        for(ExpenseNIncomeModel record:populateList){
+            if(record.getGroup().equals("expense")){
+                expense+=record.getAmount();
+            }else if(record.getGroup().equals("income")){
+                income+=record.getAmount();
+            }
+        }
+        Log.d("expenseIncome",expense+" "+income);
+        String myExpense="<font color=#800000>"+expense+"</font>";
+        String myIncome="<font color=#000080>"+income+"</font>";
+        textViewSummary.setText(Html.fromHtml(myExpense+"<br>"+myIncome));
+
+
     }
 
     //To add category details into a list

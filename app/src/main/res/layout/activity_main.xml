@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtViewInterval" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/txtViewSummary"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginStart="115dp"
@@ -81,7 +81,9 @@
             android:background="@drawable/circumference"
             android:gravity="center"
             android:text="TextView"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/girdVeiwCategoryHome" />
 
@@ -118,7 +120,7 @@
             app:layout_constraintBottom_toTopOf="@+id/imageViewExpense"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewSummary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
