@@ -42,26 +42,10 @@ public class SearchActivity extends AppCompatActivity {
             if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
                 query = getIntent().getStringExtra(SearchManager.QUERY);
                 Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
-
-//                Cursor data = (Cursor) databaseHelper.getSearchedData(query);
-//                populateList = databaseHelper.getSearchedData(query); //item get from MainActivity
-
-//                final SimpleCursorAdapter simpleCursorAdapter = databaseHelper.populateListViewFromDb();
-//                listViewResults.setAdapter(simpleCursorAdapter);
-
-//                if(data.getCount() == 0){
-//                    Toast.makeText(SearchActivity.this, "The database was empty", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    while(data.moveToNext()){
-//                        populateList.add();
-//                    }
-//                }
-//                arrayAdapter = new ArrayAdapter(SearchActivity.this,android.R.layout.simple_list_item_1,databaseHelper.getSearchedData(query));
                 populateList = databaseHelper.getSearchedData(query);
 
-                //for test only
-                String showStr = populateList.get(0).getCategory() + ">> " + populateList.get(0).getAmount();
-                Toast.makeText(SearchActivity.this, showStr, Toast.LENGTH_SHORT).show();
+//                String showStr = populateList.get(0).getCategory() + ">> " + populateList.get(0).getAmount();
+//                Toast.makeText(SearchActivity.this, showStr, Toast.LENGTH_SHORT).show();
 
                 SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
                 listViewResults.setAdapter(searchListAdapter);

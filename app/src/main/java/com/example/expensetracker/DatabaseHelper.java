@@ -110,6 +110,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return returnList;
     }
+
+    public List<ExpenseNIncomeModel> getAllData(){
+        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+
+        String statStr = "SELECT * FROM " + EXPENSE_TABLE;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(statStr,null);
+        if(cursor.moveToFirst()){
+            do {
+                try{
+                    int id = cursor.getInt(0);
+                    String dateStr = cursor.getString(1);
+                    String cat = cursor.getString(2);
+                    String note = cursor.getString(3);
+                    double amount = cursor.getDouble(4);
+                    Date date = dateFormat.parse(dateStr);
+                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,amount);
+                    returnList.add(expenseNIncomeModel1);
+
+                }catch (ParseException ps){
+                    ps.printStackTrace();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }while (cursor.moveToNext());
+        }
+        return returnList;
+    }
 //    public SimpleCursorAdapter populateListViewFromDb(){
 //        String columns[] = {DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
 //        Cursor cursor = db.query(DatabaseHelper.EXPENSE_TABLE, columns,null,null,null,null,null);
