@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:horizontalSpacing="8dp"
             android:numColumns="4"
@@ -75,20 +75,20 @@
             android:id="@+id/imageViewExpense"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toStartOf="@+id/imageViewIncome"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/minus" />
 
         <ImageView
             android:id="@+id/imageViewIncome"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewExpense"
+            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/plus" />
 
         <TextView
@@ -96,6 +96,7 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginStart="111dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="120dp"
             android:layout_marginBottom="4dp"
             android:background="@drawable/circumference"
@@ -103,7 +104,8 @@
             android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/btnBalance"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/girdVeiwCategoryHome" />
 
         <Button
             android:id="@+id/btnBalance"
