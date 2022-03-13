@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     Month monthName;
     GridView gridViewCategoryHome;
     List<CategoryItem> categoryItemList = new ArrayList<>();
+    List<ExpenseNIncomeModel> populateList;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)

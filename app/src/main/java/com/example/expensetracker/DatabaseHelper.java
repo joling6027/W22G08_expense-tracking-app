@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         List<ExpenseNIncomeModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_CATEGORY + "= " + "'" + item + "'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
