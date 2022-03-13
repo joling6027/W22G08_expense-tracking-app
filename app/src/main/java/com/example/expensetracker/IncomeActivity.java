@@ -80,6 +80,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
                         expenseNIncomeModel.setDate(calendar.getTime());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
+                        expenseNIncomeModel.setGroup("income");
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
                         //Display when amount if empty

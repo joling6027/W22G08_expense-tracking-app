@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOTE = "COLUMN_NOTE";
     public static final String COLUMN_AMOUNT = "COLUMN_AMOUNT";
     public static final String COLUMN_DATE = "COLUMN_DATE";
+    public static final String COLUMN_GROUP="COLUMN_GROUP";
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     SQLiteDatabase db;
     Context context;
@@ -37,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createDatabaseStat = "CREATE TABLE " + EXPENSE_TABLE +
                 "( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DATE + " TEXT, "
-                + COLUMN_CATEGORY + " TEXT, " + COLUMN_NOTE + " TEXT, " + COLUMN_AMOUNT + " REAL)";
+                + COLUMN_CATEGORY + " TEXT, " + COLUMN_NOTE + " TEXT, "+ COLUMN_GROUP + " TEXT, " + COLUMN_AMOUNT + " REAL)";
 
         db.execSQL(createDatabaseStat);
     }
@@ -58,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COLUMN_CATEGORY,expenseNIncomeModel.getCategory());
             cv.put(COLUMN_AMOUNT,expenseNIncomeModel.getAmount());
             cv.put(COLUMN_NOTE,expenseNIncomeModel.getNote());
+            cv.put(COLUMN_GROUP,expenseNIncomeModel.getGroup());
             return db.insert(EXPENSE_TABLE, null, cv) > 0;
         } catch (Exception ex) {
             return false;
@@ -93,9 +96,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 String dateStr = cursor.getString(1);
                 String cat = cursor.getString(2);
                 String note = cursor.getString(3);
-                double amount = cursor.getDouble(4);
+                String group=cursor.getString(4);
+                double amount = cursor.getDouble(5);
                 Date date = dateFormat.parse(dateStr);
-                ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,amount);
+
+                Log.d("MyHelper",id+" "+dateStr+" "+cat+" "+note+" "+group+" "+amount);
+
+                ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,group,amount);
                 returnList.add(expenseNIncomeModel1);
 
                 } catch (ParseException e) {
@@ -125,9 +132,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String dateStr = cursor.getString(1);
                     String cat = cursor.getString(2);
                     String note = cursor.getString(3);
-                    double amount = cursor.getDouble(4);
+                    String group = cursor.getString(4);
+                    double amount = cursor.getDouble(5);
                     Date date = dateFormat.parse(dateStr);
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,amount);
+                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,group,amount);
                     returnList.add(expenseNIncomeModel1);
 
                 }catch (ParseException ps){
@@ -154,5 +162,118 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        return simpleCursorAdapter;
 //    }
 
+// getDateByDate
 
+    public List<ExpenseNIncomeModel> getDataByDate(Date today){
+
+        //create an empty arrayList
+        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        //search query
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + "= " + "'" + dateFormat.format(today) + "'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if(cursor.moveToFirst()){
+            do{
+                try {
+                    int id = cursor.getInt(0);
+                    String dateStr = cursor.getString(1);
+                    String cat = cursor.getString(2);
+                    String note = cursor.getString(3);
+                    String group = cursor.getString(4);
+                    double amount = cursor.getDouble(5);
+                    Date date = dateFormat.parse(dateStr);
+                    Log.d("MyHelper",id+" "+dateStr+" "+cat+" "+note+" "+group+" "+amount);
+                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,group,amount);
+                    returnList.add(expenseNIncomeModel1);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "date parse error", Toast.LENGTH_SHORT).show();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }while (cursor.moveToNext());
+
+        }else { }
+
+        return returnList;
+    }
+
+    // getDateByYear
+
+    public List<ExpenseNIncomeModel> getDataByYear(String year){
+
+        //create an empty arrayList
+        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        //search query
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " +  COLUMN_DATE + " LIKE" + "'" + year + "%'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if(cursor.moveToFirst()){
+            do{
+                try {
+                    int id = cursor.getInt(0);
+                    String dateStr = cursor.getString(1);
+                    String cat = cursor.getString(2);
+                    String note = cursor.getString(3);
+                    String group = cursor.getString(4);
+                    double amount = cursor.getDouble(5);
+                    Date date = dateFormat.parse(dateStr);
+                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,group,amount);
+                    returnList.add(expenseNIncomeModel1);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "date parse error", Toast.LENGTH_SHORT).show();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }while (cursor.moveToNext());
+
+        }else { }
+
+        return returnList;
+    }
+
+    // getDateByYear
+
+    public List<ExpenseNIncomeModel> getDataByMonth(String month){
+
+        //create an empty arrayList
+        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        //search query
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " +  COLUMN_DATE + " LIKE" + "'_____" + month + "%'";
+        Log.d("updateMonth",queryString);
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+        if(cursor.moveToFirst()){
+            do{
+                try {
+                    int id = cursor.getInt(0);
+                    String dateStr = cursor.getString(1);
+                    String cat = cursor.getString(2);
+                    String note = cursor.getString(3);
+                    String group = cursor.getString(4);
+                    double amount = cursor.getDouble(5);
+                    Date date = dateFormat.parse(dateStr);
+                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id,date,cat,note,group,amount);
+                    returnList.add(expenseNIncomeModel1);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    Toast.makeText(context, "date parse error", Toast.LENGTH_SHORT).show();
+                }catch (Exception ex){
+                    ex.printStackTrace();
+                }
+            }while (cursor.moveToNext());
+
+        }else { }
+
+        return returnList;
+    }
 }

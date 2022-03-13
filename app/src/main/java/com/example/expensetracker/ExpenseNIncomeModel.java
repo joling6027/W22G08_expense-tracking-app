@@ -9,13 +9,15 @@ public class ExpenseNIncomeModel {
     private String category;
     private String note;
     private double amount;
+    private String group;
 
-    public ExpenseNIncomeModel(int id, Date date, String category, String note, double amount) {
+    public ExpenseNIncomeModel(int id, Date date, String category, String note, String group,double amount) {
         this.id = id;
         this.date = date;
         this.category = category;
         this.note = note;
         this.amount = amount;
+        this.group=group;
     }
 
     public ExpenseNIncomeModel(int id, String category, String note, double amount) {
@@ -65,5 +67,13 @@ public class ExpenseNIncomeModel {
     }
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

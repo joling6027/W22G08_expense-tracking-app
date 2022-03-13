@@ -81,6 +81,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
                         expenseNIncomeModel.setDate(calendar.getTime());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
+                        expenseNIncomeModel.setGroup("expense");
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
                         //Display when amount if empty

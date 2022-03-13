@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,14 +27,18 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -48,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
     Month monthName;
     GridView gridViewCategoryHome;
     List<CategoryItem> categoryItemList = new ArrayList<>();
-    List<ExpenseNIncomeModel> populateList;
-
+    List<ExpenseNIncomeModel> populateList= new ArrayList<>();
+    DatabaseHelper databaseHelper;
+    Date selectedDate;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    CategoryAdapterHome cAdapter;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -85,11 +93,20 @@ public class MainActivity extends AppCompatActivity {
         monthName = Month.of(mMonth+1);
         textViewInterval.setText(mDay+" "+monthName+" "+mYear);
 
-        //
-        addData();
-        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
-        CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
-        gridViewCategoryHome.setAdapter(cAdapter);
+        //add gridView
+        selectedDate=calendar.getTime();
+        databaseHelper = new DatabaseHelper(MainActivity.this);
+
+            addData();
+            populateList = databaseHelper.getDataByDate(selectedDate);
+            Log.d("myApp",calendar.getTime().toString());
+
+            gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
+            cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
+            gridViewCategoryHome.setAdapter(cAdapter);
+
+
+
         //balance button
         Button computeBalance=findViewById(R.id.btnBalance);
         computeBalance.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +139,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    // add GridViewCategory
+//    private void addCategoryView() {
+//        addData();
+//        populateList = databaseHelper.getDataByDate(selectedDate);
+//        Log.d("myApp",calendar.getTime().toString());
+//
+//        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
+//        cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
+//        gridViewCategoryHome.setAdapter(cAdapter);
+//
+//
+//    }
 ////////
 
     //NavigationDrawer
@@ -137,10 +167,17 @@ public class MainActivity extends AppCompatActivity {
                 int itemId=item.getItemId();
                 if(itemId==R.id.month){
                     textViewInterval.setText(monthName.toString());
+                    gridViewCategoryHome.setAdapter(cAdapter);
+                    String month=mMonth>8?(mMonth+1)+"":"0"+(mMonth+1);
+                    cAdapter.setPopulateList(databaseHelper.getDataByMonth(month));
+                    cAdapter.notifyDataSetChanged();
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.year){
                     textViewInterval.setText(mYear+" ");
+                    gridViewCategoryHome.setAdapter(cAdapter);
+                    cAdapter.setPopulateList(databaseHelper.getDataByYear(mYear+""));
+                    cAdapter.notifyDataSetChanged();
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.day){
@@ -152,11 +189,18 @@ public class MainActivity extends AppCompatActivity {
                                 mYear=year;
                                 monthName = Month.of(mMonth+1);
                                 textViewInterval.setText(mDay+" "+monthName+" "+mYear);
+                            try {
+                                selectedDate=dateFormat.parse(mYear+"-"+(mMonth+1)+"-"+mDay);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            Log.d("selectedTime",selectedDate.toString());
+                            gridViewCategoryHome.setAdapter(cAdapter);
+                            cAdapter.setPopulateList(databaseHelper.getDataByDate(selectedDate));
+                            cAdapter.notifyDataSetChanged();
                         }
                     },mYear,mMonth,mDay);
                     datePickerDialog.show();
-
-
                     dLayout.closeDrawers();
                 }
 
@@ -198,6 +242,11 @@ public class MainActivity extends AppCompatActivity {
         categoryItemList.add(new CategoryItem("Thermometer", R.drawable.thermometer));
         categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
+
+//        populateList.add(new ExpenseNIncomeModel(10,"Pet", "hi", 55.00) );
+//        populateList.add(new ExpenseNIncomeModel(11,"Home", "hi", 55.00) );
+//        populateList.add(new ExpenseNIncomeModel(12,"Sports", "hi", 55.00) );
+
     }
 
 

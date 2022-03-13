@@ -6,10 +6,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SearchListAdapter extends BaseAdapter {
     List<ExpenseNIncomeModel> searchedList;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public SearchListAdapter(List<ExpenseNIncomeModel> searchedList) {
         this.searchedList = searchedList;
@@ -44,7 +46,7 @@ public class SearchListAdapter extends BaseAdapter {
 
 //        imgViewCat.setImageResource();
             txtViewCategory.setText(searchedList.get(i).getCategory());
-            txtViewDate.setText(searchedList.get(i).getDate().toString());
+            txtViewDate.setText(dateFormat.format(searchedList.get(i).getDate()));
             txtViewNote.setText(searchedList.get(i).getNote());
             txtViewAmount.setText(Double.toString(searchedList.get(i).getAmount()));
 
