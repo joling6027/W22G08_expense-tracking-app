@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -31,7 +32,9 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
     SearchView simpleSearchView;
     TextView textViewInterval;
     Month monthName;
-
+    GridView gridViewCategoryHome;
+    List<CategoryItem> categoryItemList = new ArrayList<>();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -79,8 +83,11 @@ public class MainActivity extends AppCompatActivity {
         monthName = Month.of(mMonth+1);
         textViewInterval.setText(mDay+" "+monthName+" "+mYear);
 
-
-
+        //
+        addData();
+        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
+        CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
+        gridViewCategoryHome.setAdapter(cAdapter);
         //balance button
         Button computeBalance=findViewById(R.id.btnBalance);
         computeBalance.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+////////
 
     //NavigationDrawer
     private void setNavigationDrawer() {
@@ -175,6 +182,21 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //To add category details into a list
+    private void addData() {
+        categoryItemList.add(new CategoryItem("Vehicle", R.drawable.car));
+        categoryItemList.add(new CategoryItem("Pet", R.drawable.cat));
+        categoryItemList.add(new CategoryItem("Grocery", R.drawable.diet));
+        categoryItemList.add(new CategoryItem("Drink", R.drawable.drink));
+        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift));
+        categoryItemList.add(new CategoryItem("Food", R.drawable.fork));
+        categoryItemList.add(new CategoryItem("Home", R.drawable.home));
+        categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
+        categoryItemList.add(new CategoryItem("Sports", R.drawable.soccerplayer));
+        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.thermometer));
+        categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
+        categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
+    }
 
 
     //the end

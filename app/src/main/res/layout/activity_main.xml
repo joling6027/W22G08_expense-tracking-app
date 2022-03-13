@@ -18,10 +18,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
             android:background="#49B728"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintBottom_toTopOf="@+id/txtViewInterval"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/list"
@@ -41,7 +42,6 @@
             <!-- navigation button and title for the Toolbar-->
         </androidx.appcompat.widget.Toolbar>
 
-
         <TextView
             android:id="@+id/txtViewInterval"
             android:layout_width="0dp"
@@ -56,161 +56,38 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
-        <ImageView
-            android:id="@+id/imgViewDentist"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="320dp"
-            android:layout_marginTop="32dp"
+        <GridView
+            android:id="@+id/girdVeiwCategoryHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:horizontalSpacing="8dp"
+            android:numColumns="4"
+            android:verticalSpacing="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
-            app:srcCompat="@drawable/toothbrush" />
-
-        <ImageView
-            android:id="@+id/imgViewSport"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="320dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
-            app:srcCompat="@drawable/soccerplayer" />
-
-        <ImageView
-            android:id="@+id/imgViewMedicine"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="320dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
-            app:srcCompat="@drawable/thermometer" />
-
-        <ImageView
-            android:id="@+id/imgViewGift"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewPhoneCharge"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
-            app:srcCompat="@drawable/gift" />
-
-        <ImageView
-            android:id="@+id/imgViewPhoneCharge"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewClothes"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
-            app:srcCompat="@drawable/phone" />
-
-        <ImageView
-            android:id="@+id/imgViewClothes"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewPet"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
-            app:srcCompat="@drawable/tshirt" />
-
-        <ImageView
-            android:id="@+id/imgViewPet"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTaxi"
-            app:srcCompat="@drawable/cat" />
-
-        <ImageView
-            android:id="@+id/imgViewTaxi"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewDrink"
-            app:srcCompat="@drawable/taxi" />
-
-        <ImageView
-            android:id="@+id/imgViewDrink"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewTrans"
-            app:srcCompat="@drawable/drink" />
-
-        <ImageView
-            android:id="@+id/imgViewTrans"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewDiet"
-            app:srcCompat="@drawable/train" />
-
-        <ImageView
-            android:id="@+id/imgViewEatOut"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewCar"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
-            app:srcCompat="@drawable/fork" />
-
-        <ImageView
-            android:id="@+id/imgViewCar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewHouse"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
-            app:srcCompat="@drawable/car" />
-
-        <ImageView
-            android:id="@+id/imgViewDiet"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
-            app:srcCompat="@drawable/diet" />
-
-        <ImageView
-            android:id="@+id/imgViewHouse"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="46dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/imgViewDiet"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval"
-            app:srcCompat="@drawable/home" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval" />
 
         <ImageView
             android:id="@+id/imageViewExpense"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewIncome"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:srcCompat="@drawable/minus" />
 
         <ImageView
             android:id="@+id/imageViewIncome"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBalance"
             app:layout_constraintStart_toEndOf="@+id/imageViewExpense"
             app:srcCompat="@drawable/plus" />
 
@@ -218,31 +95,28 @@
             android:id="@+id/txViewSummary"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="111dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/circumference"
             android:gravity="center"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/imgViewPhoneCharge"
-            app:layout_constraintEnd_toStartOf="@+id/imgViewDentist"
-            app:layout_constraintStart_toEndOf="@+id/imgViewTaxi"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewCar"
-            app:layout_constraintVertical_bias="0.44" />
+            app:layout_constraintBottom_toTopOf="@+id/btnBalance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnBalance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
+            android:layout_marginBottom="4dp"
             android:backgroundTint="#EC9089"
             android:text="Balance"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewExpense"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgViewClothes" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
