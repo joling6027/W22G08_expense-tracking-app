@@ -1,8 +1,9 @@
 package com.example.expensetracker;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ExpenseNIncomeModel {
+public class ExpenseNIncomeModel implements Serializable {
 
     private int id;
     private Date date;

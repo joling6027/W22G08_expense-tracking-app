@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
@@ -33,6 +34,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Month;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     double expense;
     double income;
     TextView textViewSummary;
+    Bundle bundle=new Bundle();
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -121,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
         computeBalance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,BalanceActivity.class));
+                Intent intent=new Intent(MainActivity.this,BalanceActivity.class);
+                bundle.putSerializable("populateList", (Serializable) populateList);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -150,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }//end of oncreat
+    }//end of oncreate
 
 
 
