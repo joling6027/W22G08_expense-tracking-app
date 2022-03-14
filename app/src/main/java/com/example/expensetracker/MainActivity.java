@@ -166,6 +166,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //textVeiwSummary
+        textViewSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSummary(populateList,null);
+            }
+        });
+
 
     }//end of oncreate
 
