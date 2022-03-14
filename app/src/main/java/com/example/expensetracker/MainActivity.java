@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.GridView;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     double income;
     TextView textViewSummary;
     Bundle bundle=new Bundle();
-
+    String selectedCat=null;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -102,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
         //add gridView
         selectedDate=calendar.getTime();
+        addData();
         databaseHelper = new DatabaseHelper(MainActivity.this);
 
-        addData();
         populateList = databaseHelper.getDataByDate(selectedDate);
         Log.d("myApp",calendar.getTime().toString());
 
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
         //setTextViewSummary
         textViewSummary=findViewById(R.id.txtViewSummary);
-        getSummary(populateList);
+        getSummary(populateList,selectedCat);
 
 
 
@@ -156,6 +157,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //imageViewOnClick
+        gridViewCategoryHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCat=categoryItemList.get(i).getCategoryName();
+                getSummary(populateList,selectedCat);
+            }
+        });
+
+
     }//end of oncreate
 
 
@@ -181,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                     populateList=databaseHelper.getDataByMonth(month);
                     cAdapter.setPopulateList(populateList);
                     cAdapter.notifyDataSetChanged();
-                    getSummary(populateList);
+                    getSummary(populateList,selectedCat);
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.year){
@@ -190,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                     populateList=databaseHelper.getDataByYear(mYear+"");
                     cAdapter.setPopulateList(populateList);
                     cAdapter.notifyDataSetChanged();
-                    getSummary(populateList);
+                    getSummary(populateList,selectedCat);
                     dLayout.closeDrawers();
                 }
                 if(itemId==R.id.day){
@@ -211,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                             gridViewCategoryHome.setAdapter(cAdapter);
                             populateList=databaseHelper.getDataByDate(selectedDate);
                             cAdapter.setPopulateList(populateList);
-                            getSummary(populateList);
+                            getSummary(populateList,selectedCat);
                             cAdapter.notifyDataSetChanged();
                         }
                     },mYear,mMonth,mDay);
@@ -244,24 +255,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //update textViewSummary
-    private void getSummary(List<ExpenseNIncomeModel> populateList) {
-        double expense=0;
-        double income=0;
-
-        for(ExpenseNIncomeModel record:populateList){
-            if(record.getGroup().equals("expense")){
-                expense+=record.getAmount();
-            }else if(record.getGroup().equals("income")){
-                income+=record.getAmount();
+    private void getSummary(List<ExpenseNIncomeModel> populateList,String selectedCat) {
+        double expense = 0;
+        double income = 0;
+        if (selectedCat == null) {
+            for (ExpenseNIncomeModel record : populateList) {
+                if (record.getGroup().equals("expense")) {
+                    expense += record.getAmount();
+                } else if (record.getGroup().equals("income")) {
+                    income += record.getAmount();
+                }
+            }
+        } else {
+            for (ExpenseNIncomeModel record : populateList) {
+                if (record.getGroup().equals("expense") && record.getCategory().equals(selectedCat)) {
+                    expense += record.getAmount();
+                } else if (record.getGroup().equals("income")) {
+                    income += record.getAmount();
+                }
             }
         }
-        Log.d("expenseIncome",expense+" "+income);
-        String myExpense="<font color=#800000>"+expense+"</font>";
-        String myIncome="<font color=#000080>"+income+"</font>";
-        textViewSummary.setText(Html.fromHtml(myExpense+"<br>"+myIncome));
 
 
-    }
+            Log.d("expenseIncome", expense + " " + income);
+            String myExpense = "<font color=#800000>" + expense + "</font>";
+            String myIncome = "<font color=#000080>" + income + "</font>";
+            textViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome));
+
+
+        }
 
     //To add category details into a list
     private void addData() {
@@ -278,11 +300,11 @@ public class MainActivity extends AppCompatActivity {
         categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
 
-//        populateList.add(new ExpenseNIncomeModel(10,"Pet", "hi", 55.00) );
-//        populateList.add(new ExpenseNIncomeModel(11,"Home", "hi", 55.00) );
-//        populateList.add(new ExpenseNIncomeModel(12,"Sports", "hi", 55.00) );
 
-    }
+        }
+
+
+
 
 
     //the end
