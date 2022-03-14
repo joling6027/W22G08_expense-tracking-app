@@ -93,7 +93,9 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                     if (success == true) {
                         //display entry stored successfully and move back to home page
                         Toast.makeText(IncomeActivity.this, "Entry Inserted", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(IncomeActivity.this, MainActivity.class));
+                        Intent intent=new Intent(IncomeActivity.this, MainActivity.class);
+                        intent.putExtra("date",calendar.getTime());
+                        startActivity(intent);
                     } else {
                         //display entry stored unsuccessfully and stay in expense entry page
                         Toast.makeText(IncomeActivity.this, "Entry Not Inserted", Toast.LENGTH_SHORT).show();

@@ -91,18 +91,28 @@ public class MainActivity extends AppCompatActivity {
 
         //calendar picker
         calendar=Calendar.getInstance();
+
+
+        //add gridView
+        if(getIntent().getSerializableExtra("date")==null){
+            selectedDate=calendar.getTime();
+        }else{
+           selectedDate= (Date) getIntent().getSerializableExtra("date");
+           calendar.setTime(selectedDate);
+        }
+
+        //set date
         mYear=calendar.get(Calendar.YEAR);
         mMonth=calendar.get(Calendar.MONTH);
         mDay=calendar.get(Calendar.DAY_OF_MONTH);
-
 
         //textView Interval
         textViewInterval=findViewById(R.id.txtViewInterval);
         monthName = Month.of(mMonth+1);
         textViewInterval.setText(mDay+" "+monthName+" "+mYear);
 
-        //add gridView
-        selectedDate=calendar.getTime();
+
+
         addData();
         databaseHelper = new DatabaseHelper(MainActivity.this);
 
