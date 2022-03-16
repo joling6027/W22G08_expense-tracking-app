@@ -2,6 +2,8 @@ package com.example.expensetracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 public class BalanceActivity extends AppCompatActivity {
 
-    ListView listViewResults;
+    RecyclerView recyclerViewResults;
     Toolbar toolBarBalance;
     //    ArrayAdapter arrayAdapter;
 
@@ -27,12 +29,13 @@ public class BalanceActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        listViewResults = findViewById(R.id.listViewBalance);
+        recyclerViewResults = findViewById(R.id.recyclerViewBalance);
 
         try {
                 ArrayList<ExpenseNIncomeModel> populateList= (ArrayList<ExpenseNIncomeModel>) getIntent().getExtras().getSerializable("populateList");
-                SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
-                listViewResults.setAdapter(searchListAdapter);
+                BalanceAdapter balanceAdapter = new BalanceAdapter(populateList);
+                recyclerViewResults.setLayoutManager(new LinearLayoutManager(this));
+                recyclerViewResults.setAdapter(balanceAdapter);
         }catch (Exception ex){
             Toast.makeText(BalanceActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
