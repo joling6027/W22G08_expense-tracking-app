@@ -19,14 +19,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <LinearLayout
+        android:id="@+id/linearLayouBalance"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#9F9898"
+        app:layout_constraintTop_toBottomOf="@id/toolbarBalance">
+
+        <TextView
+            android:id="@+id/txtViewCategory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center|left"
+            android:text="Categary" />
+
+        <TextView
+            android:id="@+id/txtViewDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center|left"
+            android:text="Date" />
+
+        <TextView
+            android:id="@+id/txtViewNote"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:gravity="center|left"
+            android:text="Note" />
+
+        <TextView
+            android:id="@+id/txtViewAmount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center|left"
+            android:inputType="number"
+            android:text="Amount" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBalance"
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarBalance" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayouBalance" />
 </androidx.constraintlayout.widget.ConstraintLayout>
