@@ -9,31 +9,39 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.2"
+        android:fontFamily="casual"
         android:gravity="center|left"
-        android:text="Food" />
+        android:text="Food"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViewDate"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"
+        android:layout_weight="0.3"
+        android:fontFamily="casual"
         android:gravity="center|left"
-        android:text="2022-03-14" />
+        android:text="2022-03-14"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViewNote"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="0.4"
+        android:layout_weight="0.3"
+        android:fontFamily="casual"
         android:gravity="center|left"
-        android:text="tomatos" />
+        android:text="tomatos"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViewAmount"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.2"
+        android:fontFamily="casual"
         android:gravity="center|left"
         android:inputType="number"
-        android:text="$5" />
+        android:text="$5"
+        android:textStyle="bold" />
 </LinearLayout>

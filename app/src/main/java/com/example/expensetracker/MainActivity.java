@@ -262,13 +262,25 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_search, menu);
 
+        MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         simpleSearchView =
                 (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        simpleSearchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+
+        //add setOnItemClickListener so click on search icon will focus on searchView
+        searchMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                simpleSearchView.setSearchableInfo(
+                        searchManager.getSearchableInfo(getComponentName()));
+                simpleSearchView.setIconified(false);
+                simpleSearchView.setFocusable(true);
+                return false;
+            }
+        });
+
         return true;
     }
 
@@ -314,10 +326,9 @@ public class MainActivity extends AppCompatActivity {
         categoryItemList.add(new CategoryItem("Home", R.drawable.home));
         categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
         categoryItemList.add(new CategoryItem("Sports", R.drawable.soccerplayer));
-        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.thermometer));
+        categoryItemList.add(new CategoryItem("Medical", R.drawable.thermometer));
         categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
-
 
         }
 
