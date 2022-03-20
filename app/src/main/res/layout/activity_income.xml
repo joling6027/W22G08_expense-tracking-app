@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IncomeActivity">
+    tools:context=".IncomeActivity"
+    android:animateLayoutChanges="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:clickable="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
@@ -13,9 +17,9 @@
         android:background="#22577E"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
             android:id="@+id/txtViewIncomePageTitle"
@@ -29,56 +33,46 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imgViewDiet"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
+        android:id="@+id/imgViewCalendar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="116dp"
         android:contentDescription="@string/imgViewCalendar"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSelectDate"
-        app:layout_constraintEnd_toStartOf="@+id/txtViewDate"
-        app:layout_constraintStart_toStartOf="@+id/btnSelectDate"
-        app:layout_constraintTop_toTopOf="@+id/btnSelectDate"
-        app:srcCompat="@drawable/ic_calendar" />
-
-    <Button
-        android:id="@+id/btnSelectDate"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/btnSelectDate"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/toolBar"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/toolBar"
+        app:layout_constraintBottom_toTopOf="@+id/editTxtAmount"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        tools:ignore="RedundantDescriptionCheck" />
+        app:layout_constraintVertical_bias="0.475"
+        app:srcCompat="@drawable/ic_calendar" />
 
     <TextView
         android:id="@+id/txtViewDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
         android:text="@string/txtViewDate"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSelectDate"
-        app:layout_constraintEnd_toEndOf="@+id/btnSelectDate"
-        app:layout_constraintStart_toStartOf="@+id/btnSelectDate"
-        app:layout_constraintTop_toTopOf="@+id/btnSelectDate" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.43"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
     <EditText
-        android:id="@+id/editTxtDecimal"
+        android:id="@+id/editTxtAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/editTxtDecimal"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
+        android:cursorVisible="false"
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
-        app:layout_constraintTop_toBottomOf="@+id/btnSelectDate" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewDate" />
 
     <Button
         android:id="@+id/btnChooseCategory"
@@ -104,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtAmount" />
 
     <GridView
         android:id="@+id/gridViewCategories"
@@ -119,7 +113,26 @@
         android:verticalSpacing="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChooseCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/btnChooseCategory"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <RelativeLayout
+        android:id="@+id/relLayKeyboard"
+        android:layout_width="410dp"
+        android:layout_height="275dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gridViewCategories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/gridViewCategories">
+
+        <include
+            layout="@layout/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

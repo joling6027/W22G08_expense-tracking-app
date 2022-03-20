@@ -1,20 +1,14 @@
 package com.example.expensetracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.SearchManager;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -34,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
         toolBar2 = findViewById(R.id.toolbar2);
         setSupportActionBar(toolBar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         databaseHelper = new DatabaseHelper(SearchActivity.this);
         listViewResults = findViewById(R.id.listViewResults);
@@ -55,7 +50,5 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(SearchActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
         }
-
-
     }
 }

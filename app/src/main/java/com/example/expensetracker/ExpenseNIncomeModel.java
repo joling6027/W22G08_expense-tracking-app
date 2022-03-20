@@ -11,6 +11,7 @@ public class ExpenseNIncomeModel implements Serializable {
     private String note;
     private double amount;
     private String group;
+    private int pic;
 
     public ExpenseNIncomeModel(int id, Date date, String category, String note, String group,double amount) {
         this.id = id;
@@ -77,4 +78,8 @@ public class ExpenseNIncomeModel implements Serializable {
     public void setGroup(String group) {
         this.group = group;
     }
+
+    public int getPic() { return pic; }
+
+    public void setPic(int pic) {this.pic = pic; }
 }

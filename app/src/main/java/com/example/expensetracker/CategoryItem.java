@@ -24,4 +24,5 @@ public class CategoryItem {
     public void setCategoryPic(int categoryPic) {
         this.categoryPic = categoryPic;
     }
+
 }

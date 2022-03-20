@@ -1,14 +1,12 @@
 package com.example.expensetracker;
 
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 

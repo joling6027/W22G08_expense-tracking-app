@@ -1,6 +1,28 @@
 package com.example.expensetracker;
 
 
+import android.app.DatePickerDialog;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -8,31 +30,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-
-import android.app.DatePickerDialog;
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Html;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.TextView;
-
-
-
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
@@ -40,33 +42,39 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    String[] inteval = {"day","month", "year", "pick"};
     DatePickerDialog datePickerDialog;
     Calendar calendar;
     int mYear, mMonth, mDay;
     DrawerLayout dLayout;
     SearchView simpleSearchView;
-    TextView textViewInterval;
+    TextView textViewInterval, txtViewSummary, txtViewItem, categoryName;
     Month monthName;
-    GridView gridViewCategoryHome;
     List<CategoryItem> categoryItemList = new ArrayList<>();
     List<ExpenseNIncomeModel> populateList= new ArrayList<>();
     DatabaseHelper databaseHelper;
     Date selectedDate;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    CategoryAdapterHome cAdapter;
-    double expense;
-    double income;
-    TextView textViewSummary;
     Bundle bundle=new Bundle();
     String selectedCat=null;
+    RelativeLayout relativeLayout;
+    CircleListView circleListView;
+    CategoryAdapterHome categoryAdapterHome;
+    ImageView categoryImg;
+    CategoryItem categoryItem;
+    PieChart pieChart;
+    ArrayList<PieEntry> pieCategories;
+    ArrayList<PieModel> pieList = new ArrayList<>();
+    int [] colors = {Color.parseColor("#DAF7A6"), Color.parseColor("#FFC300"),
+            Color.parseColor("#FF5733"), Color.parseColor("#C70039"),
+            Color.parseColor("#900C3F"), Color.parseColor("#581845"),
+            Color.parseColor("#7393B3"), Color.parseColor("#5F9EA0"),
+            Color.parseColor("#98FB98"), Color.parseColor("#FF69B4"),
+            Color.parseColor("#5D3FD3"), Color.parseColor("#E97451")};
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -75,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         // implement setNavigationOnClickListener event
@@ -87,13 +94,8 @@ public class MainActivity extends AppCompatActivity {
         });
         setNavigationDrawer(); // call method
 
-
-
         //calendar picker
         calendar=Calendar.getInstance();
-
-
-        //add gridView
         if(getIntent().getSerializableExtra("date")==null){
             selectedDate=calendar.getTime();
         }else{
@@ -111,24 +113,24 @@ public class MainActivity extends AppCompatActivity {
         monthName = Month.of(mMonth+1);
         textViewInterval.setText(mDay+" "+monthName+" "+mYear);
 
-
-
         addData();
         databaseHelper = new DatabaseHelper(MainActivity.this);
 
         populateList = databaseHelper.getDataByDate(selectedDate);
         Log.d("myApp",calendar.getTime().toString());
 
-        gridViewCategoryHome=findViewById(R.id.girdVeiwCategoryHome);
-        cAdapter = new CategoryAdapterHome(categoryItemList,populateList);
-        gridViewCategoryHome.setAdapter(cAdapter);
+        //circle list view
+        init();
 
+        //pie chart
+        pieChart = findViewById(R.id.pie);
+        pieList = databaseHelper.Pie(calendar.getTime());
+        drawPie(pieList);
 
         //setTextViewSummary
-        textViewSummary=findViewById(R.id.txtViewSummary);
+        txtViewSummary=findViewById(R.id.txtViewSummary);
         getSummary(populateList,selectedCat);
-
-
+        txtViewSummary.bringToFront();
 
         //balance button
         Button computeBalance=findViewById(R.id.btnBalance);
@@ -142,10 +144,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //
-
-
-
         // input expense
         ImageView imageViewExpense=findViewById(R.id.imageViewExpense);
 
@@ -156,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         //input income
         ImageView imageViewIncome=findViewById(R.id.imageViewIncome);
         imageViewIncome.setOnClickListener(new View.OnClickListener() {
@@ -166,31 +163,82 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        //imageViewOnClick
-        gridViewCategoryHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedCat=categoryItemList.get(i).getCategoryName();
-                getSummary(populateList,selectedCat);
-            }
-        });
-
-        //textVeiwSummary
-        textViewSummary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSummary(populateList,null);
-            }
-        });
-
-
     }//end of oncreate
 
+    //initialize list view
+    private void init() {
+        relativeLayout = findViewById(R.id.relLayoutHome);
+        circleListView = findViewById(R.id.circle_list_view);
+        txtViewItem = findViewById(R.id.txtViewItem);
+        categoryAdapterHome = new CategoryAdapterHome(circleListView) {
+            @Override
+            public View getView(int position) {
+                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.category_item, null);
+                categoryName = view.findViewById(R.id.txtViewCategory);
+                categoryImg = view.findViewById(R.id.imgViewCategory);
+                categoryItem = categoryItemList.get(position);
+                categoryName.setText(categoryItem.getCategoryName());
+                categoryImg.setImageResource(categoryItem.getCategoryPic());
+                view.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View view, MotionEvent motionEvent) {
+                        for(ExpenseNIncomeModel record:populateList){
+                            if(record.getCategory().equals(categoryItemList.get(position).getCategoryName()))
+                            {
+                                txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
+                                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                                    txtViewSummary.bringToFront();
+                                    txtViewItem.setVisibility(View.GONE);
+                                } else{
+                                    txtViewItem.setVisibility(View.VISIBLE);
+                                    txtViewItem.bringToFront();
+                                }
+                            };
+                        }
+                        return true;
+                    }
+                });
+                for(ExpenseNIncomeModel record:populateList){
+                    if(record.getCategory().equals(categoryItemList.get(position).getCategoryName()) && record.getAmount() != 0)
+                    {
+                        txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
+                        categoryImg.setBackgroundColor(Color.rgb(236, 144, 137));
+                    };
+                }
+                return view;
+            }
+            @Override
+            public int getCount() {
+                return categoryItemList.size();
+            }
+        };
+        circleListView.setAdapter(categoryAdapterHome);
+        categoryAdapterHome.setPosition(0);
+    }
 
+    //create pie chart
+    private void drawPie(ArrayList<PieModel> pieList) {
+        pieCategories = new ArrayList<>();
+        for (int i = 0; i < pieList.size(); i++) {
+            String category = pieList.get(i).getCategory();
+            int amount = Integer.parseInt(pieList.get(i).getAmount());
+            pieCategories.add(new PieEntry(amount, category));
+        }
+        PieDataSet pieDataSet = new PieDataSet(pieCategories, "Categories");
+        pieDataSet.setColors(colors);
+        pieDataSet.setValueTextColor(Color.BLACK);
+        pieDataSet.setValueTextSize(10f);
+        pieDataSet.setHighlightEnabled(true);
 
-
-
+        PieData pieData = new PieData(pieDataSet);
+        pieData.setValueFormatter(new PercentFormatter(pieChart));
+        pieChart.setUsePercentValues(true);
+        pieChart.clear();
+        pieChart.setData(pieData);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.animate();
+        pieChart.getLegend().setEnabled(false);
+    }
 
     //NavigationDrawer
     private void setNavigationDrawer() {
@@ -203,60 +251,59 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId=item.getItemId();
-                if(itemId==R.id.month){
+                if(itemId== R.id.month){
                     textViewInterval.setText(monthName.toString());
-                    gridViewCategoryHome.setAdapter(cAdapter);
+                    circleListView.setAdapter(categoryAdapterHome);
                     String month=mMonth>8?(mMonth+1)+"":"0"+(mMonth+1);
                     populateList=databaseHelper.getDataByMonth(month);
-                    cAdapter.setPopulateList(populateList);
-                    cAdapter.notifyDataSetChanged();
                     getSummary(populateList,selectedCat);
                     dLayout.closeDrawers();
+                    pieList = databaseHelper.PieMonth(month);
+                    init();
+                    drawPie(pieList);
                 }
-                if(itemId==R.id.year){
+                if(itemId== R.id.year){
                     textViewInterval.setText(mYear+" ");
-                    gridViewCategoryHome.setAdapter(cAdapter);
+                    circleListView.setAdapter(categoryAdapterHome);
                     populateList=databaseHelper.getDataByYear(mYear+"");
-                    cAdapter.setPopulateList(populateList);
-                    cAdapter.notifyDataSetChanged();
                     getSummary(populateList,selectedCat);
                     dLayout.closeDrawers();
+                    pieList = databaseHelper.PieYear(String.valueOf(mYear));
+                    init();
+                    drawPie(pieList);
                 }
-                if(itemId==R.id.day){
+                if(itemId== R.id.day){
                     datePickerDialog=new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                                mDay=day;
-                                mMonth=month;
-                                mYear=year;
-                                monthName = Month.of(mMonth+1);
-                                textViewInterval.setText(mDay+" "+monthName+" "+mYear);
+                            mDay=day;
+                            mMonth=month;
+                            mYear=year;
+                            monthName = Month.of(mMonth+1);
+                            textViewInterval.setText(mDay+" "+monthName+" "+mYear);
                             try {
                                 selectedDate=dateFormat.parse(mYear+"-"+(mMonth+1)+"-"+mDay);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                             Log.d("selectedTime",selectedDate.toString());
-                            gridViewCategoryHome.setAdapter(cAdapter);
+                            circleListView.setAdapter(categoryAdapterHome);
                             populateList=databaseHelper.getDataByDate(selectedDate);
-                            cAdapter.setPopulateList(populateList);
                             getSummary(populateList,selectedCat);
-                            cAdapter.notifyDataSetChanged();
+                            pieList = databaseHelper.Pie(selectedDate);
+                            init();
+                            drawPie(pieList);
                         }
                     },mYear,mMonth,mDay);
                     datePickerDialog.show();
                     dLayout.closeDrawers();
                 }
-
                 return false;
             }
         });
-
     }
 
-
     //inflate menu
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -280,8 +327,8 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         return true;
+
     }
 
     //update textViewSummary
@@ -305,15 +352,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
-
-            Log.d("expenseIncome", expense + " " + income);
-            String myExpense = "<font color=#800000>" + expense + "</font>";
-            String myIncome = "<font color=#000080>" + income + "</font>";
-            textViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome));
-
-
-        }
+        Log.d("expenseIncome", expense + " " + income);
+        String myExpense = "<font color=#800000>" + expense + "</font>";
+        String myIncome = "<font color=#000080>" + income + "</font>";
+        txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome));
+    }
 
     //To add category details into a list
     private void addData() {
@@ -329,12 +372,9 @@ public class MainActivity extends AppCompatActivity {
         categoryItemList.add(new CategoryItem("Medical", R.drawable.thermometer));
         categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
-
-        }
-
-
-
-
+        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit));
+        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary));
+    }
 
     //the end
 }

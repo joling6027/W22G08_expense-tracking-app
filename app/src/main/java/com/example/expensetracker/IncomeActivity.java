@@ -1,9 +1,9 @@
 package com.example.expensetracker;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -11,28 +11,32 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class IncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     //Variables
     List<CategoryItem> categoryItemList = new ArrayList<>();
-    Button btnSelectDate, btnChooseCategory;
+    Button btnChooseCategory;
     EditText editTxtAmount, editTxtNotes;
     GridView gridViewCategory;
     TextView txtViewDate;
     Calendar calendar;
     Toolbar toolBar;
+    ImageView imgViewCalendar;
+    CalculatorKeyboard calKeyboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +51,55 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //get edit text by id
-        editTxtAmount = findViewById(R.id.editTxtDecimal);
-        editTxtNotes = findViewById(R.id.editTxtNotes);
-
-        //button to select date
-        btnSelectDate = findViewById(R.id.btnSelectDate);
-        btnSelectDate.setOnClickListener((View view) -> {
-            //display calendar for date selection
+        //Select date
+        txtViewDate = findViewById(R.id.txtViewDate);
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        txtViewDate.setText(currentDate);
+        txtViewDate.setOnClickListener((View view) -> {
             showCalendar();
+            editTxtAmount.clearFocus();
+            editTxtNotes.clearFocus();
+            calKeyboard.hide();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
+        });
+        imgViewCalendar = findViewById(R.id.imgViewCalendar);
+        imgViewCalendar.setOnClickListener((View view) -> {
+            showCalendar();
+            editTxtAmount.clearFocus();
+            editTxtNotes.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
+        });
+
+        //custom calculator keyboard
+        editTxtAmount = findViewById(R.id.editTxtAmount);
+        calKeyboard = new CalculatorKeyboard(this, findViewById(R.id.relLayKeyboard), true);
+        editTxtAmount = findViewById(R.id.editTxtAmount);
+        editTxtAmount.setShowSoftInputOnFocus(false);
+        editTxtAmount.setOnFocusChangeListener((View view, boolean hasFocus) -> {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
+            if (hasFocus) {
+                calKeyboard.show(editTxtAmount);
+            } else {
+                calKeyboard.hide();
+            }
+        });
+
+        editTxtNotes = findViewById(R.id.editTxtNotes);
+        editTxtNotes.setOnClickListener((View view) -> {
+            calKeyboard.hide();
         });
 
         //button to choose category
         btnChooseCategory = findViewById(R.id.btnChooseCategory);
         btnChooseCategory.setOnClickListener((View view) -> {
+            editTxtAmount.clearFocus();
+            editTxtNotes.clearFocus();
+            calKeyboard.hide();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
             //display gridView
             gridViewCategory = findViewById(R.id.gridViewCategories);
             CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
@@ -78,15 +117,17 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                         //store inputs into object
                         expenseNIncomeModel.setAmount(Double.parseDouble(editTxtAmount.getText().toString()));
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
-                        expenseNIncomeModel.setDate(calendar.getTime());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
                         expenseNIncomeModel.setGroup("income");
+                        expenseNIncomeModel.setDate(calendar.getTime());
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
                         //Display when amount if empty
                         Toast.makeText(IncomeActivity.this, "Amount cannot be empty", Toast.LENGTH_SHORT).show();
                     } catch (NullPointerException ex) {
                         Toast.makeText(IncomeActivity.this, "Date is not selected", Toast.LENGTH_SHORT).show();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
                     //check if inputs are stored successfully
                     Boolean success = DB.addData(expenseNIncomeModel);
@@ -94,7 +135,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                         //display entry stored successfully and move back to home page
                         Toast.makeText(IncomeActivity.this, "Entry Inserted", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(IncomeActivity.this, MainActivity.class);
-                        intent.putExtra("date",calendar.getTime());
+                        intent.putExtra("date", expenseNIncomeModel.getDate());
                         startActivity(intent);
                     } else {
                         //display entry stored unsuccessfully and stay in expense entry page
@@ -133,5 +174,14 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
         txtViewDate = (TextView) findViewById(R.id.txtViewDate);
         txtViewDate.setText(currentDate);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (calKeyboard.isVisible()) {
+            calKeyboard.hide();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

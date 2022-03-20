@@ -56,43 +56,63 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
-        <GridView
-            android:id="@+id/girdVeiwCategoryHome"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
+        <TextView
+            android:id="@+id/txtViewItem"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/white"
+            android:text="TextView"
+            android:textSize="20sp"
             android:gravity="center"
-            android:horizontalSpacing="8dp"
-            android:numColumns="4"
-            android:verticalSpacing="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/relLayoutHome"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval" />
+            app:layout_constraintTop_toTopOf="@+id/relLayoutHome" />
 
         <TextView
             android:id="@+id/txtViewSummary"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginStart="115dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="116dp"
-            android:background="@drawable/circumference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="textView"
+            android:textSize="20sp"
             android:gravity="center"
-            android:text="TextView"
-            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/relLayoutHome"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/girdVeiwCategoryHome" />
+            app:layout_constraintTop_toTopOf="@+id/relLayoutHome" />
+
+        <RelativeLayout
+            android:id="@+id/relLayoutHome"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtViewInterval">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_centerInParent="true" />
+
+            <com.example.expensetracker.CircleListView
+                android:id="@+id/circle_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"/>
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/imageViewExpense"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageViewIncome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnBalance"
@@ -102,7 +122,7 @@
             android:id="@+id/imageViewIncome"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewExpense"
             app:layout_constraintTop_toBottomOf="@+id/btnBalance"
@@ -113,16 +133,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="4dp"
             android:backgroundTint="#22577E"
             android:text="Balance"
             android:textColor="#F6F2D4"
-            app:layout_constraintBottom_toTopOf="@+id/imageViewExpense"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewSummary" />
+            app:layout_constraintTop_toBottomOf="@+id/relLayoutHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
