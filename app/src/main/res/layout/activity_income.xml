@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <TextView
-            android:id="@+id/txtViewIncomePageTitle"
+            android:id="@+id/txtViewExpensePageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,9 +39,10 @@
         android:layout_marginStart="116dp"
         android:contentDescription="@string/imgViewCalendar"
         app:layout_constraintBottom_toTopOf="@+id/editTxtAmount"
+        app:layout_constraintEnd_toStartOf="@+id/txtViewDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
-        app:layout_constraintVertical_bias="0.475"
+        app:layout_constraintVertical_bias="0.40"
         app:srcCompat="@drawable/ic_calendar" />
 
     <TextView

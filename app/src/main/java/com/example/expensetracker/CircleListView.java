@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 
 public class CircleListView extends ViewGroup {
 
-    private static final double intervalAngel = 25.7;//子view之间的间隔角
-    int circleR;//圆的半径
-    int ccx;//圆心的x轴坐标
-    int ccy;//圆心的y轴坐标
-    double angel = 0;//偏移角度
+    private static final double intervalAngel = 25.7;
+    int circleR;
+    int ccx;
+    int ccy;
+    double angel = 0;
     private Bitmap circleBitmap = null;
     private Rect src;
     private Rect dst;

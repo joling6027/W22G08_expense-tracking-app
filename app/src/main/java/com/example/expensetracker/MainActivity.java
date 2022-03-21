@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                     if(record.getCategory().equals(categoryItemList.get(position).getCategoryName()) && record.getAmount() != 0)
                     {
                         txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
-                        categoryImg.setBackgroundColor(Color.rgb(236, 144, 137));
+                        categoryImg.setBackgroundResource(R.drawable.category_backgorund);
                     };
                 }
                 return view;
@@ -361,17 +361,17 @@ public class MainActivity extends AppCompatActivity {
     //To add category details into a list
     private void addData() {
         categoryItemList.add(new CategoryItem("Vehicle", R.drawable.car));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.cat));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.diet));
+        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet));
+        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery));
         categoryItemList.add(new CategoryItem("Drink", R.drawable.drink));
         categoryItemList.add(new CategoryItem("Gift", R.drawable.gift));
-        categoryItemList.add(new CategoryItem("Food", R.drawable.fork));
+        categoryItemList.add(new CategoryItem("Food", R.drawable.food));
         categoryItemList.add(new CategoryItem("Home", R.drawable.home));
         categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.soccerplayer));
-        categoryItemList.add(new CategoryItem("Medical", R.drawable.thermometer));
-        categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
+        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports));
+        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical));
+        categoryItemList.add(new CategoryItem("Transit", R.drawable.transit));
+        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing));
         categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit));
         categoryItemList.add(new CategoryItem("Salary", R.drawable.salary));
     }

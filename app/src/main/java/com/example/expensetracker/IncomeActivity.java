@@ -37,6 +37,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
     Toolbar toolBar;
     ImageView imgViewCalendar;
     CalculatorKeyboard calKeyboard;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,13 +120,14 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
                         expenseNIncomeModel.setGroup("income");
-                        expenseNIncomeModel.setDate(calendar.getTime());
+                        expenseNIncomeModel.setDate(dateFormat.parse(currentDate));
+                        if (calendar.getTime() != null){
+                            expenseNIncomeModel.setDate(calendar.getTime());
+                        }
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
                         //Display when amount if empty
                         Toast.makeText(IncomeActivity.this, "Amount cannot be empty", Toast.LENGTH_SHORT).show();
-                    } catch (NullPointerException ex) {
-                        Toast.makeText(IncomeActivity.this, "Date is not selected", Toast.LENGTH_SHORT).show();
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
@@ -171,7 +173,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        String currentDate = dateFormat.format(calendar.getTime());
         txtViewDate = (TextView) findViewById(R.id.txtViewDate);
         txtViewDate.setText(currentDate);
     }

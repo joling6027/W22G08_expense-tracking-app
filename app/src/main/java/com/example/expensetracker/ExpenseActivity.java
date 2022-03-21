@@ -119,14 +119,15 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
                         expenseNIncomeModel.setGroup("expense");
-                        expenseNIncomeModel.setDate(calendar.getTime());
+                        expenseNIncomeModel.setDate(dateFormat.parse(currentDate));
+                        if (calendar.getTime() != null){
+                            expenseNIncomeModel.setDate(calendar.getTime());
+                        }
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
                         //Display when amount if empty
                         Toast.makeText(ExpenseActivity.this, "Amount cannot be empty", Toast.LENGTH_SHORT).show();
-                    } catch (NullPointerException ex) {
-                        Toast.makeText(ExpenseActivity.this, "Date is not selected", Toast.LENGTH_SHORT).show();
-                    } catch (Exception ex) {
+                    }  catch (Exception ex) {
                         ex.printStackTrace();
                     }
                     //check if inputs are stored successfully
@@ -140,6 +141,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                     } else {
                         //display entry stored unsuccessfully and stay in expense entry page
                         Toast.makeText(ExpenseActivity.this, "Entry Not Inserted", Toast.LENGTH_SHORT).show();
+
                     }
                 }
             });
@@ -149,17 +151,17 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
     //To add category details into a list
     private void addData() {
         categoryItemList.add(new CategoryItem("Vehicle", R.drawable.car));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.cat));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.diet));
+        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet));
+        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery));
         categoryItemList.add(new CategoryItem("Drink", R.drawable.drink));
         categoryItemList.add(new CategoryItem("Gift", R.drawable.gift));
-        categoryItemList.add(new CategoryItem("Food", R.drawable.fork));
+        categoryItemList.add(new CategoryItem("Food", R.drawable.food));
         categoryItemList.add(new CategoryItem("Home", R.drawable.home));
         categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.soccerplayer));
-        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.thermometer));
-        categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
+        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports));
+        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.medical));
+        categoryItemList.add(new CategoryItem("Transit", R.drawable.transit));
+        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing));
     }
 
     //get calendar
