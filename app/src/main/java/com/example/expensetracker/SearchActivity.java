@@ -26,7 +26,6 @@ public class SearchActivity extends AppCompatActivity {
     List<ExpenseNIncomeModel> populateList;
     String query;
     Toolbar toolBar2;
-//    ArrayAdapter arrayAdapter;
     DatabaseHelper databaseHelper;
 
 
@@ -72,8 +71,10 @@ public class SearchActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseHelper.deleteData(clickedData);
                             Toast.makeText(SearchActivity.this, "data deleted", Toast.LENGTH_SHORT).show();
-                            SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
-                            listViewResults.setAdapter(searchListAdapter);
+                            //need to refresh the list
+
+//                            SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
+//                            listViewResults.setAdapter(searchListAdapter);
                         }
                     })
                     .setNegativeButton(android.R.string.no, null)

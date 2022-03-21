@@ -38,6 +38,8 @@ public class BalanceActivity extends AppCompatActivity {
             Toast.makeText(BalanceActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
         }
+
+
     }
 }
 
