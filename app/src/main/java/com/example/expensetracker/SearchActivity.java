@@ -47,9 +47,6 @@ public class SearchActivity extends AppCompatActivity {
                 Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
                 populateList = databaseHelper.getSearchedData(query);
 
-//                String showStr = populateList.get(0).getCategory() + ">> " + populateList.get(0).getAmount();
-//                Toast.makeText(SearchActivity.this, showStr, Toast.LENGTH_SHORT).show();
-
                 SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
                 listViewResults.setAdapter(searchListAdapter);
             }
@@ -71,10 +68,22 @@ public class SearchActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             databaseHelper.deleteData(clickedData);
                             Toast.makeText(SearchActivity.this, "data deleted", Toast.LENGTH_SHORT).show();
-                            //need to refresh the list
 
-//                            SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
-//                            listViewResults.setAdapter(searchListAdapter);
+                            //refresh the list
+                            try {
+                                if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+                                    query = getIntent().getStringExtra(SearchManager.QUERY);
+                                    Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
+                                    populateList = databaseHelper.getSearchedData(query);
+
+                                    SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
+                                    listViewResults.setAdapter(searchListAdapter);
+                                }
+
+                            }catch (Exception ex){
+                                Toast.makeText(SearchActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
+                                ex.printStackTrace();
+                            }
                         }
                     })
                     .setNegativeButton(android.R.string.no, null)
