@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.2"
         android:fontFamily="casual"
-        android:gravity="center|left"
+        android:gravity="center|center_horizontal"
         android:text="Food"
         android:textStyle="bold" />
 
@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3"
         android:fontFamily="casual"
-        android:gravity="center|left"
+        android:gravity="center|center_horizontal"
         android:text="2022-03-14"
         android:textStyle="bold" />
 
@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3"
         android:fontFamily="casual"
-        android:gravity="center|left"
+        android:gravity="center|center_horizontal"
         android:text="tomatos"
         android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.2"
         android:fontFamily="casual"
-        android:gravity="center|left"
+        android:gravity="center|center_horizontal"
         android:inputType="number"
         android:text="$5"
         android:textStyle="bold" />
