@@ -18,7 +18,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
 
     List<ExpenseNIncomeModel> searchedList;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    OnItemClickListener onItemClickListener;
+//    OnItemClickListener onItemClickListener;
     DatabaseHelper databaseHelper;
     //
 
@@ -26,24 +26,23 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
         this.searchedList = searchedList;
     }
 
-    public BalanceAdapter(List<ExpenseNIncomeModel> searchedList,OnItemClickListener onItemClickListener){
-        this.searchedList = searchedList;
-        this.onItemClickListener = onItemClickListener;
-    }
+//    public BalanceAdapter(List<ExpenseNIncomeModel> searchedList,OnItemClickListener onItemClickListener){
+//        this.searchedList = searchedList;
+//        this.onItemClickListener = onItemClickListener;
+//    }
 
     @NonNull
     @Override
     public BalanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.layout_searchitem,parent,false);
-        BalanceViewHolder balanceViewHolder=new BalanceViewHolder(view);
+        BalanceViewHolder balanceViewHolder = new BalanceViewHolder(view);
         balanceViewHolder.txtViewCategory = view.findViewById(R.id.txtViewCategory);
         balanceViewHolder.txtViewDate = view.findViewById(R.id.txtViewDate);
         balanceViewHolder.txtViewNote = view.findViewById(R.id.txtViewNote);
         balanceViewHolder.txtViewAmount = view.findViewById(R.id.txtViewAmount);
 
         databaseHelper = new DatabaseHelper(view.getContext());
-
         return balanceViewHolder;
     }
 
@@ -84,8 +83,9 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 databaseHelper.deleteData(clickedData);
-                                Toast.makeText(view.getContext(), "data deleted", Toast.LENGTH_SHORT).show();
                                 //need to refresh the list
+                                Toast.makeText(view.getContext(), "data deleted", Toast.LENGTH_SHORT).show();
+
                             }
                         })
                         .setNegativeButton(android.R.string.no, null)

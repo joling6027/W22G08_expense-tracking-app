@@ -157,7 +157,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
         categoryItemList.add(new CategoryItem("Home", R.drawable.home));
         categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
         categoryItemList.add(new CategoryItem("Sports", R.drawable.soccerplayer));
-        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.thermometer));
+        categoryItemList.add(new CategoryItem("Medical", R.drawable.thermometer));
         categoryItemList.add(new CategoryItem("Transit", R.drawable.train));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.tshirt));
     }
