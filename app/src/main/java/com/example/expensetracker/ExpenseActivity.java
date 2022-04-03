@@ -50,6 +50,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         //Select date
         txtViewDate = findViewById(R.id.txtViewDate);
@@ -150,18 +151,18 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Vehicle", R.drawable.car));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery));
-        categoryItemList.add(new CategoryItem("Drink", R.drawable.drink));
-        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift));
-        categoryItemList.add(new CategoryItem("Food", R.drawable.food));
-        categoryItemList.add(new CategoryItem("Home", R.drawable.home));
-        categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports));
-        categoryItemList.add(new CategoryItem("Thermometer", R.drawable.medical));
-        categoryItemList.add(new CategoryItem("Transit", R.drawable.transit));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing));
+        categoryItemList.add(new CategoryItem("Car", R.drawable.car1));
+        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet1));
+        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery1));
+        categoryItemList.add(new CategoryItem("Entertainment", R.drawable.entertainment));
+        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift1));
+        categoryItemList.add(new CategoryItem("Dine Out", R.drawable.food1));
+        categoryItemList.add(new CategoryItem("Home", R.drawable.house));
+        categoryItemList.add(new CategoryItem("Phone", R.drawable.smartphone));
+        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports1));
+        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical1));
+        categoryItemList.add(new CategoryItem("Transportation", R.drawable.transportation));
+        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing1));
     }
 
     //get calendar

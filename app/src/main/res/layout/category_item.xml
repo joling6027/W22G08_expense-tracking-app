@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgViewCategory"
         android:layout_centerHorizontal="true"
-        android:text="Name" />
+        android:text="Name"
+        android:textSize="12sp" />
 
 </RelativeLayout>

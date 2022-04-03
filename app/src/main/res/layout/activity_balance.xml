@@ -10,9 +10,9 @@
         android:id="@+id/toolbarBalance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#22577E"
+        android:background="#048998"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:id="@+id/linearLayouBalance"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#9F9898"
+        android:background="#05b6ca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarBalance">
@@ -33,42 +33,48 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Categary" />
+            android:text="Categary"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewDate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Date" />
+            android:text="Date"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewNote"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Note" />
+            android:text="Note"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewAmount"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:inputType="number"
-            android:text="Amount" />
+            android:text="Amount"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBalance"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

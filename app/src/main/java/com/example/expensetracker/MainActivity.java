@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView categoryImg;
     CategoryItem categoryItem;
     PieChart pieChart;
+    ImageView imgViewTitle;
     ArrayList<PieEntry> pieCategories;
     ArrayList<PieModel> pieList = new ArrayList<>();
     int [] colors = {Color.parseColor("#DAF7A6"), Color.parseColor("#FFC300"),
@@ -83,13 +85,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
+        imgViewTitle = findViewById(R.id.imgViewTitle);
 
         // implement setNavigationOnClickListener event
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 dLayout.openDrawer(Gravity.LEFT);
+
             }
         });
         setNavigationDrawer(); // call method
@@ -137,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         computeBalance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,BalanceActivity.class);
+                Intent intent=new Intent(MainActivity.this, BalanceActivity.class);
                 bundle.putSerializable("populateList", (Serializable) populateList);
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -316,6 +322,7 @@ public class MainActivity extends AppCompatActivity {
         simpleSearchView =
                 (SearchView) menu.findItem(R.id.menu_search).getActionView();
 
+
         //add setOnItemClickListener so click on search icon will focus on searchView
         searchMenuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -324,7 +331,23 @@ public class MainActivity extends AppCompatActivity {
                         searchManager.getSearchableInfo(getComponentName()));
                 simpleSearchView.setIconified(false);
                 simpleSearchView.setFocusable(true);
+                imgViewTitle.setVisibility(View.INVISIBLE);
                 return false;
+            }
+        });
+
+        searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                imgViewTitle.setVisibility(View.VISIBLE);
+
+                return true;
             }
         });
         return true;
@@ -353,27 +376,28 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Log.d("expenseIncome", expense + " " + income);
-        String myExpense = "<font color=#800000>" + expense + "</font>";
-        String myIncome = "<font color=#000080>" + income + "</font>";
-        txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome));
+        String myExpense = "<font color=#800000>" + "Expense: "+ -(expense) + "</font>";
+        String myIncome = "<font color=#000080>" + "Income: " + income + "</font>";
+        String myBalance = "<font color=#032254>" + "Balance: " + (income-expense) + "</font>";
+        txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome + "<br>" +myBalance));
     }
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Vehicle", R.drawable.car));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery));
-        categoryItemList.add(new CategoryItem("Drink", R.drawable.drink));
-        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift));
-        categoryItemList.add(new CategoryItem("Food", R.drawable.food));
-        categoryItemList.add(new CategoryItem("Home", R.drawable.home));
-        categoryItemList.add(new CategoryItem("Phone", R.drawable.phone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports));
-        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical));
-        categoryItemList.add(new CategoryItem("Transit", R.drawable.transit));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing));
-        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit));
-        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary));
+        categoryItemList.add(new CategoryItem("Car", R.drawable.car1));
+        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet1));
+        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery1));
+        categoryItemList.add(new CategoryItem("Entertainment", R.drawable.entertainment));
+        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift1));
+        categoryItemList.add(new CategoryItem("Dine Out", R.drawable.food1));
+        categoryItemList.add(new CategoryItem("Home", R.drawable.house));
+        categoryItemList.add(new CategoryItem("Phone", R.drawable.smartphone));
+        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports1));
+        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical1));
+        categoryItemList.add(new CategoryItem("Transportation", R.drawable.transportation));
+        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing1));
+        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit1));
+        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
     }
 
     //the end

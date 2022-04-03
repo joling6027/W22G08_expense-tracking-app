@@ -10,7 +10,8 @@
     <string name="txtViewPaymentMethod">Payment method</string>
     <string name="editTxtNotes">Notes</string>
     <string name="btnChooseCategory">Choose Category</string>
-    <string name="txtViewExpensePageTitle">Add Expense</string>
-    <string name="txtViewIncomePageTitle">Add Income</string>
+    <string name="txtViewExpensePageTitle">ADD EXPENSE</string>
+    <string name="txtViewIncomePageTitle">ADD INCOME</string>
     <string name="search_hint">input categary to find</string>
+    <string name="txtWelcomepage">Loading...</string>
 </resources>

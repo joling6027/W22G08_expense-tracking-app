@@ -1,6 +1,7 @@
 package com.example.expensetracker;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,14 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
         holder.txtViewCategory.setText(searchedList.get(i).getCategory());
         holder.txtViewDate.setText(dateFormat.format(searchedList.get(i).getDate()));
         holder.txtViewNote.setText(searchedList.get(i).getNote());
-        holder.txtViewAmount.setText(Double.toString(searchedList.get(i).getAmount()));
+        double amount = searchedList.get(i).getAmount();
+        holder.txtViewAmount.setText(Double.toString(amount));
+        if(amount > 0){
+            holder.txtViewAmount.setTextColor(Color.BLUE);
+        }else{
+            holder.txtViewAmount.setTextColor(Color.RED);
+        }
+
     }
 
 

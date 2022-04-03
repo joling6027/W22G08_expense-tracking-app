@@ -3,28 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/300302355/StudioProjects/W22G08_expense-tracking-app/app/src/main/res/drawable/ic_calendar.xml" value="0.2777777777777778" />
-        <entry key="..\:/Users/300302355/StudioProjects/W22G08_expense-tracking-app/app/src/main/res/layout/activity_expense.xml" value="0.15172239108409322" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.18020833333333333" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.18020833333333333" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_balance.xml" value="0.1640625" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_expense.xml" value="0.1640625" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_calendar.xml" value="0.14947916666666666" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_category.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_balance.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_expense.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_income.xml" value="0.1796875" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_main.xml" value="0.1640625" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_search.xml" value="0.22" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/category_item.xml" value="0.1640625" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/keyboard.xml" value="0.1625" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/layout_searchitem.xml" value="0.1640625" />
-        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/toolbar.xml" value="0.1640625" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/drawable/category_backgorund.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/drawable/pie_center_background.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/drawable/style1.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/drawable/style2.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/layout/activity_balance.xml" value="0.14990942028985507" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/layout/activity_expense.xml" value="0.14990942028985507" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/layout/activity_income.xml" value="0.14990942028985507" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/FROMGROUPGIT/app/src/main/res/layout/activity_search.xml" value="0.24728260869565216" />
-        <entry key="..\:/mobProject/W22G08_expense-tracking-app/app/src/main/res/layout/activity_main.xml" value="0.1852355072463768" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_search.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_splash.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/category_item.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/keyboard.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/layout_searchitem.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/toolbar.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/menu/menu_search.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/menu/nav_items.xml" value="0.1796875" />
       </map>
     </option>
   </component>

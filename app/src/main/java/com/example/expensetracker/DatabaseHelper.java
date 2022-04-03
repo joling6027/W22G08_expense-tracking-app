@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.expensetracker.ExpenseNIncomeModel;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String EXPENSE_TABLE = "EXPENSE_TABLE";

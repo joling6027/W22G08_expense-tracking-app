@@ -4,12 +4,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -37,9 +40,12 @@ public class SearchActivity extends AppCompatActivity {
         toolBar2 = findViewById(R.id.toolbar2);
         setSupportActionBar(toolBar2);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Search Category");
 
         databaseHelper = new DatabaseHelper(SearchActivity.this);
         listViewResults = findViewById(R.id.listViewResults);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         try {
             if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {

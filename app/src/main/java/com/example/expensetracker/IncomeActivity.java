@@ -51,6 +51,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
         toolBar = findViewById(R.id.toolBar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         //Select date
         txtViewDate = findViewById(R.id.txtViewDate);
@@ -150,8 +151,8 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit));
-        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary));
+        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit1));
+        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
     }
 
     //get calendar

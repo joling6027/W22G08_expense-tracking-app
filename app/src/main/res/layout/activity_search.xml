@@ -10,9 +10,9 @@
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#22577E"
+        android:background="#048998"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/linearLayoutSearch"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:background="#9F9898"
+        android:background="#05b6ca"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,41 +35,47 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Categary" />
+            android:text="Categary"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewDate2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Date" />
+            android:text="Date"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewNote2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Note" />
+            android:text="Note"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/txtViewAmount2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:inputType="number"
-            android:text="Amount" />
+            android:text="Amount"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listViewResults"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutSearch" />

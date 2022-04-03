@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="#22577E"
+            android:background="#048998"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
             app:layout_constraintBottom_toTopOf="@+id/txtViewInterval"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +41,16 @@
 
             <!-- navigation button and title for the Toolbar-->
         </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/imgViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="@+id/toolbar"
+            app:srcCompat="@drawable/title1" />
 
         <TextView
             android:id="@+id/txtViewInterval"
@@ -77,9 +87,9 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="textView"
-            android:textSize="20sp"
             android:gravity="center"
+            android:text="textView"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/relLayoutHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +114,7 @@
                 android:id="@+id/circle_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"/>
+                android:clickable="true" />
 
         </RelativeLayout>
 
@@ -126,7 +136,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewExpense"
             app:layout_constraintTop_toBottomOf="@+id/btnBalance"
-            app:srcCompat="@drawable/plus" />
+            app:srcCompat="@drawable/plus1" />
 
         <Button
             android:id="@+id/btnBalance"
@@ -135,9 +145,10 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="50dp"
-            android:backgroundTint="#22577E"
-            android:text="Balance"
-            android:textColor="#F6F2D4"
+            android:backgroundTint="#048998"
+            android:text="= Balance ="
+            android:textColor="#F6F5F5"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relLayoutHome" />

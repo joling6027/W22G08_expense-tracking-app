@@ -2,31 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IncomeActivity"
     android:animateLayoutChanges="true"
-    android:focusableInTouchMode="true"
+    android:clickable="true"
     android:focusable="true"
-    android:clickable="true">
+    android:focusableInTouchMode="true"
+    tools:context=".IncomeActivity">
+
+    <ImageView
+        android:id="@+id/imgViewTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/title1" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#22577E"
+        android:background="#048998"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/txtViewExpensePageTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="sans-serif-black"
             android:text="@string/txtViewIncomePageTitle"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="168dp"
             tools:layout_editor_absoluteY="18dp" />
 
@@ -44,6 +57,18 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar"
         app:layout_constraintVertical_bias="0.40"
         app:srcCompat="@drawable/ic_calendar" />
+
+    <ImageView
+        android:id="@+id/imgViewMoney"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTxtAmount"
+        app:layout_constraintEnd_toStartOf="@+id/editTxtAmount"
+        app:layout_constraintTop_toTopOf="@+id/editTxtAmount"
+        app:layout_constraintVertical_bias="0.19"
+        app:srcCompat="@drawable/money" />
 
     <TextView
         android:id="@+id/txtViewDate"
@@ -64,16 +89,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:cursorVisible="false"
         android:ems="10"
         android:hint="@string/editTxtDecimal"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        android:cursorVisible="false"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDate" />
+
+    <ImageView
+        android:id="@+id/imgViewNote"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTxtNotes"
+        app:layout_constraintEnd_toStartOf="@+id/editTxtNotes"
+        app:layout_constraintTop_toTopOf="@+id/editTxtNotes"
+        app:srcCompat="@drawable/note" />
 
     <Button
         android:id="@+id/btnChooseCategory"
@@ -93,9 +130,10 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/editTxtNotes"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:imeOptions="actionDone"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/toolBar"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/toolBar"
@@ -117,7 +155,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnChooseCategory"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"/>
 
     <RelativeLayout
         android:id="@+id/relLayKeyboard"
