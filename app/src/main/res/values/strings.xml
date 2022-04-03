@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">expenseTracker</string>
+    <string name="app_name">expense Tracker</string>
     <string name="imgViewCat">Category img</string>
     <string name="imgViewCalendar">Calendar image</string>
     <string name="btnSelectDate">To select date</string>
@@ -14,4 +14,5 @@
     <string name="txtViewIncomePageTitle">ADD INCOME</string>
     <string name="search_hint">input categary to find</string>
     <string name="txtWelcomepage">Loading...</string>
+    <string name="txtBalanceSheetTitle">BALANCE SHEET</string>
 </resources>

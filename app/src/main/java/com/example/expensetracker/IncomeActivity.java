@@ -151,7 +151,7 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit1));
+        categoryItemList.add(new CategoryItem("Deposits", R.drawable.deposit1));
         categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
     }
 

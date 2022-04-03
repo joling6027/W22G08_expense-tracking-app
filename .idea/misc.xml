@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/category_backgorund.xml" value="0.14444444444444443" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_calendar.xml" value="0.14947916666666666" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_category.xml" value="0.13055555555555556" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher__background.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/pie_center_background.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/rounded_corner.xml" value="0.1111111111111111" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_balance.xml" value="0.1796875" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_expense.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_income.xml" value="0.1796875" />

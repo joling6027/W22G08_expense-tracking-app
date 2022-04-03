@@ -376,9 +376,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Log.d("expenseIncome", expense + " " + income);
-        String myExpense = "<font color=#800000>" + "Expense: "+ -(expense) + "</font>";
+        String myExpense = "<font color=#800000>" + "Expense: "+ expense + "</font>";
         String myIncome = "<font color=#000080>" + "Income: " + income + "</font>";
-        String myBalance = "<font color=#032254>" + "Balance: " + (income-expense) + "</font>";
+        String myBalance = "<font color=#032254>" + "Balance: " + (income+expense) + "</font>";
         txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome + "<br>" +myBalance));
     }
 
@@ -396,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
         categoryItemList.add(new CategoryItem("Medical", R.drawable.medical1));
         categoryItemList.add(new CategoryItem("Transportation", R.drawable.transportation));
         categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing1));
-        categoryItemList.add(new CategoryItem("Deposit", R.drawable.deposit1));
+        categoryItemList.add(new CategoryItem("Deposits", R.drawable.deposit1));
         categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
     }
 

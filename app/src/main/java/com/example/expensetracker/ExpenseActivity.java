@@ -116,7 +116,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                     //try and catch exception for inputs
                     try{
                         //store inputs into object
-                        expenseNIncomeModel.setAmount(Double.parseDouble(editTxtAmount.getText().toString()));
+                        expenseNIncomeModel.setAmount(-(Double.parseDouble(editTxtAmount.getText().toString())));
                         expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
                         expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
                         expenseNIncomeModel.setGroup("expense");

@@ -101,6 +101,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
                         .show();
                     }
                 }
+
             });
         }
 

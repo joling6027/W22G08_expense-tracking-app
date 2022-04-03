@@ -148,23 +148,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return returnList;
     }
-//    public SimpleCursorAdapter populateListViewFromDb(){
-//        String columns[] = {DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
-//        Cursor cursor = db.query(DatabaseHelper.EXPENSE_TABLE, columns,null,null,null,null,null);
-//        int[] toViewIds = new int[]{R.id.txtViewCategory,R.id.txtViewDate,R.id.txtViewNote,R.id.txtViewAmount};
-//        String[] fromFieldNames = new String[]{DatabaseHelper.COLUMN_CATEGORY,DatabaseHelper.COLUMN_DATE,DatabaseHelper.COLUMN_NOTE,DatabaseHelper.COLUMN_AMOUNT};
-//        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(
-//                context,
-//                R.layout.layout_searchitem,
-//                cursor,
-//                fromFieldNames,
-//                toViewIds
-//        );
-//        return simpleCursorAdapter;
-//    }
 
 // getDateByDate
-
     public List<ExpenseNIncomeModel> getDataByDate(Date today) {
 
         //create an empty arrayList
@@ -282,7 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<PieModel> Pie(Date today) {
         ArrayList<PieModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(COLUMN_AMOUNT) FROM " + EXPENSE_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " = " + "'" + dateFormat.format(today) + "'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
@@ -305,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<PieModel> PieMonth(String month) {
         ArrayList<PieModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(COLUMN_AMOUNT) FROM " + EXPENSE_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
@@ -328,7 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<PieModel> PieYear(String year) {
         ArrayList<PieModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(COLUMN_AMOUNT) FROM " + EXPENSE_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;

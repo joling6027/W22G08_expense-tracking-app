@@ -25,7 +25,7 @@ public class BalanceActivity extends AppCompatActivity {
         toolBarBalance = findViewById(R.id.toolbarBalance);
         setSupportActionBar(toolBarBalance);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Balance Sheet");
+        getSupportActionBar().setTitle("");
 
 
         recyclerViewResults = findViewById(R.id.recyclerViewBalance);

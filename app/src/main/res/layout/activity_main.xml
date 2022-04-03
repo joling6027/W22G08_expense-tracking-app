@@ -68,14 +68,14 @@
 
         <TextView
             android:id="@+id/txtViewItem"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="91dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@color/white"
+            android:gravity="center"
             android:text="TextView"
             android:textSize="20sp"
-            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/relLayoutHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,9 +87,10 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:text="textView"
-            android:textSize="14sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/relLayoutHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +115,8 @@
                 android:id="@+id/circle_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true" />
+                android:clickable="true"
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </RelativeLayout>
 
