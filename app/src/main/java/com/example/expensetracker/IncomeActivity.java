@@ -18,7 +18,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +27,7 @@ import java.util.Locale;
 
 public class IncomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     //Variables
-    List<CategoryItem> categoryItemList = new ArrayList<>();
+    List<TransactionModel> categoryItemList = new ArrayList<>();
     Button btnChooseCategory;
     EditText editTxtAmount, editTxtNotes;
     GridView gridViewCategory;
@@ -113,17 +112,17 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                     //get database
                     DatabaseHelper DB = new DatabaseHelper(getApplicationContext());
                     //create a object
-                    ExpenseNIncomeModel expenseNIncomeModel = new ExpenseNIncomeModel();
+                    TransactionModel transactionModel = new TransactionModel();
                     //try and catch exception for inputs
                     try{
                         //store inputs into object
-                        expenseNIncomeModel.setAmount(Double.parseDouble(editTxtAmount.getText().toString()));
-                        expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
-                        expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
-                        expenseNIncomeModel.setGroup("income");
-                        expenseNIncomeModel.setDate(dateFormat.parse(currentDate));
+                        transactionModel.setAmount(Double.parseDouble(editTxtAmount.getText().toString()));
+                        transactionModel.setNote(editTxtNotes.getText().toString());
+                        transactionModel.setCategory(categoryItemList.get(i).getCategory());
+                        transactionModel.setGroup("income");
+                        transactionModel.setDate(dateFormat.parse(currentDate));
                         if (calendar.getTime() != null){
-                            expenseNIncomeModel.setDate(calendar.getTime());
+                            transactionModel.setDate(calendar.getTime());
                         }
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
@@ -133,12 +132,12 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
                         ex.printStackTrace();
                     }
                     //check if inputs are stored successfully
-                    Boolean success = DB.addData(expenseNIncomeModel);
+                    Boolean success = DB.addData(transactionModel);
                     if (success == true) {
                         //display entry stored successfully and move back to home page
                         Toast.makeText(IncomeActivity.this, "Entry Inserted", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(IncomeActivity.this, MainActivity.class);
-                        intent.putExtra("date", expenseNIncomeModel.getDate());
+                        intent.putExtra("date", transactionModel.getDate());
                         startActivity(intent);
                     } else {
                         //display entry stored unsuccessfully and stay in expense entry page
@@ -151,8 +150,8 @@ public class IncomeActivity extends AppCompatActivity implements DatePickerDialo
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Deposits", R.drawable.deposit1));
-        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
+        categoryItemList.add(new TransactionModel("Deposits", R.drawable.deposit1));
+        categoryItemList.add(new TransactionModel("Salary", R.drawable.salary));
     }
 
     //get calendar

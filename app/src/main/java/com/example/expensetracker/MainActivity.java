@@ -1,11 +1,13 @@
 package com.example.expensetracker;
 
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -17,7 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -55,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     SearchView simpleSearchView;
     TextView textViewInterval, txtViewSummary, txtViewItem, categoryName;
     Month monthName;
-    List<CategoryItem> categoryItemList = new ArrayList<>();
-    List<ExpenseNIncomeModel> populateList= new ArrayList<>();
+    List<TransactionModel> categoryItemList = new ArrayList<>();
+    List<TransactionModel> populateList = new ArrayList<>();
     DatabaseHelper databaseHelper;
     Date selectedDate;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -65,18 +67,12 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     CircleListView circleListView;
     CategoryAdapterHome categoryAdapterHome;
-    ImageView categoryImg;
-    CategoryItem categoryItem;
+    ImageView categoryImg, imgViewTitle;
+    TransactionModel categoryItem;
     PieChart pieChart;
-    ImageView imgViewTitle;
     ArrayList<PieEntry> pieCategories;
-    ArrayList<PieModel> pieList = new ArrayList<>();
-    int [] colors = {Color.parseColor("#DAF7A6"), Color.parseColor("#FFC300"),
-            Color.parseColor("#FF5733"), Color.parseColor("#C70039"),
-            Color.parseColor("#900C3F"), Color.parseColor("#581845"),
-            Color.parseColor("#7393B3"), Color.parseColor("#5F9EA0"),
-            Color.parseColor("#98FB98"), Color.parseColor("#FF69B4"),
-            Color.parseColor("#5D3FD3"), Color.parseColor("#E97451")};
+    ArrayList<TransactionModel> pieList = new ArrayList<>();
+    int[] colors;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -93,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 dLayout.openDrawer(Gravity.LEFT);
-
             }
         });
         setNavigationDrawer(); // call method
@@ -183,13 +177,13 @@ public class MainActivity extends AppCompatActivity {
                 categoryName = view.findViewById(R.id.txtViewCategory);
                 categoryImg = view.findViewById(R.id.imgViewCategory);
                 categoryItem = categoryItemList.get(position);
-                categoryName.setText(categoryItem.getCategoryName());
-                categoryImg.setImageResource(categoryItem.getCategoryPic());
+                categoryName.setText(categoryItem.getCategory());
+                categoryImg.setImageResource(categoryItem.getPic());
                 view.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
-                        for(ExpenseNIncomeModel record:populateList){
-                            if(record.getCategory().equals(categoryItemList.get(position).getCategoryName()))
+                        for(TransactionModel record:populateList){
+                            if(record.getCategory().equals(categoryItemList.get(position).getCategory()))
                             {
                                 txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
                                 if (motionEvent.getAction() == MotionEvent.ACTION_UP){
@@ -204,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-                for(ExpenseNIncomeModel record:populateList){
-                    if(record.getCategory().equals(categoryItemList.get(position).getCategoryName()) && record.getAmount() != 0)
+                for(TransactionModel record:populateList){
+                    if(record.getCategory().equals(categoryItemList.get(position).getCategory()) && record.getAmount() != 0)
                     {
                         txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
                         categoryImg.setBackgroundResource(R.drawable.category_backgorund);
@@ -223,27 +217,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //create pie chart
-    private void drawPie(ArrayList<PieModel> pieList) {
+    private void drawPie(ArrayList<TransactionModel> pieList) {
         pieCategories = new ArrayList<>();
         for (int i = 0; i < pieList.size(); i++) {
             String category = pieList.get(i).getCategory();
-            int amount = Integer.parseInt(pieList.get(i).getAmount());
+            int amount = (int) pieList.get(i).getAmount();
             pieCategories.add(new PieEntry(amount, category));
         }
+        colors = getApplicationContext().getResources().getIntArray(R.array.pieColors);
         PieDataSet pieDataSet = new PieDataSet(pieCategories, "Categories");
         pieDataSet.setColors(colors);
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(10f);
         pieDataSet.setHighlightEnabled(true);
-
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new PercentFormatter(pieChart));
+
         pieChart.setUsePercentValues(true);
         pieChart.clear();
         pieChart.setData(pieData);
         pieChart.getDescription().setEnabled(false);
         pieChart.animate();
         pieChart.getLegend().setEnabled(false);
+        pieChart.setEntryLabelTypeface(Typeface.create("sans-serif-smallcaps", Typeface.NORMAL));
     }
 
     //NavigationDrawer
@@ -355,11 +351,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //update textViewSummary
-    private void getSummary(List<ExpenseNIncomeModel> populateList,String selectedCat) {
+    private void getSummary(List<TransactionModel> populateList, String selectedCat) {
         double expense = 0;
         double income = 0;
         if (selectedCat == null) {
-            for (ExpenseNIncomeModel record : populateList) {
+            for (TransactionModel record : populateList) {
                 if (record.getGroup().equals("expense")) {
                     expense += record.getAmount();
                 } else if (record.getGroup().equals("income")) {
@@ -367,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } else {
-            for (ExpenseNIncomeModel record : populateList) {
+            for (TransactionModel record : populateList) {
                 if (record.getGroup().equals("expense") && record.getCategory().equals(selectedCat)) {
                     expense += record.getAmount();
                 } else if (record.getGroup().equals("income")) {
@@ -378,26 +374,26 @@ public class MainActivity extends AppCompatActivity {
         Log.d("expenseIncome", expense + " " + income);
         String myExpense = "<font color=#800000>" + "Expense: "+ expense + "</font>";
         String myIncome = "<font color=#000080>" + "Income: " + income + "</font>";
-        String myBalance = "<font color=#032254>" + "Balance: " + (income+expense) + "</font>";
+        String myBalance = "<font color=#032254>" + "Balance: " + (income - expense) + "</font>";
         txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome + "<br>" +myBalance));
     }
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Car", R.drawable.car1));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet1));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery1));
-        categoryItemList.add(new CategoryItem("Entertainment", R.drawable.entertainment));
-        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift1));
-        categoryItemList.add(new CategoryItem("Dine Out", R.drawable.food1));
-        categoryItemList.add(new CategoryItem("Home", R.drawable.house));
-        categoryItemList.add(new CategoryItem("Phone", R.drawable.smartphone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports1));
-        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical1));
-        categoryItemList.add(new CategoryItem("Transportation", R.drawable.transportation));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing1));
-        categoryItemList.add(new CategoryItem("Deposits", R.drawable.deposit1));
-        categoryItemList.add(new CategoryItem("Salary", R.drawable.salary1));
+        categoryItemList.add(new TransactionModel("Car", R.drawable.car1));
+        categoryItemList.add(new TransactionModel("Pet", R.drawable.pet1));
+        categoryItemList.add(new TransactionModel("Grocery", R.drawable.grocery1));
+        categoryItemList.add(new TransactionModel("Entertainment", R.drawable.entertainment));
+        categoryItemList.add(new TransactionModel("Gift", R.drawable.gift));
+        categoryItemList.add(new TransactionModel("Dine Out", R.drawable.food1));
+        categoryItemList.add(new TransactionModel("Home", R.drawable.house));
+        categoryItemList.add(new TransactionModel("Phone", R.drawable.smartphone));
+        categoryItemList.add(new TransactionModel("Sports", R.drawable.sports));
+        categoryItemList.add(new TransactionModel("Medical", R.drawable.medical));
+        categoryItemList.add(new TransactionModel("Transportation", R.drawable.transportation));
+        categoryItemList.add(new TransactionModel("Clothing", R.drawable.clothing1));
+        categoryItemList.add(new TransactionModel("Deposits", R.drawable.deposit1));
+        categoryItemList.add(new TransactionModel("Salary", R.drawable.salary));
     }
 
     //the end

@@ -17,18 +17,18 @@ import java.util.List;
 
 public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceViewHolder>{
 
-    List<ExpenseNIncomeModel> searchedList;
+    List<TransactionModel> categoryItemList;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     OnItemClickListener onItemClickListener;
     DatabaseHelper databaseHelper;
-    //
+    OnItemClickListener mSelected;
 
-    public BalanceAdapter(List<ExpenseNIncomeModel> searchedList) {
-        this.searchedList = searchedList;
+    public BalanceAdapter(List<TransactionModel> categoryItemList) {
+        this.categoryItemList = categoryItemList;
     }
 
-    public BalanceAdapter(List<ExpenseNIncomeModel> searchedList,OnItemClickListener onItemClickListener){
-        this.searchedList = searchedList;
+    public BalanceAdapter(List<TransactionModel> categoryItemList, OnItemClickListener onItemClickListener){
+        this.categoryItemList = categoryItemList;
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -37,7 +37,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
     public BalanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.layout_searchitem,parent,false);
-        BalanceViewHolder balanceViewHolder=new BalanceViewHolder(view);
+        BalanceViewHolder balanceViewHolder=new BalanceViewHolder(view, mSelected);
         balanceViewHolder.txtViewCategory = view.findViewById(R.id.txtViewCategory);
         balanceViewHolder.txtViewDate = view.findViewById(R.id.txtViewDate);
         balanceViewHolder.txtViewNote = view.findViewById(R.id.txtViewNote);
@@ -51,24 +51,23 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
 
     @Override
     public void onBindViewHolder(@NonNull BalanceViewHolder holder, int i) {
-        holder.txtViewCategory.setText(searchedList.get(i).getCategory());
-        holder.txtViewDate.setText(dateFormat.format(searchedList.get(i).getDate()));
-        holder.txtViewNote.setText(searchedList.get(i).getNote());
-        double amount = searchedList.get(i).getAmount();
+        holder.txtViewCategory.setText(categoryItemList.get(i).getCategory());
+        holder.txtViewDate.setText(dateFormat.format(categoryItemList.get(i).getDate()));
+        holder.txtViewNote.setText(categoryItemList.get(i).getNote());
+        double amount = categoryItemList.get(i).getAmount();
         holder.txtViewAmount.setText(Double.toString(amount));
         if(amount > 0){
             holder.txtViewAmount.setTextColor(Color.BLUE);
         }else{
             holder.txtViewAmount.setTextColor(Color.RED);
         }
-
     }
 
 
 
     @Override
     public int getItemCount() {
-        return searchedList.size();
+        return categoryItemList.size();
     }
 
     public class BalanceViewHolder extends RecyclerView.ViewHolder{
@@ -77,14 +76,14 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
         TextView txtViewNote;
         TextView txtViewAmount;
 
-        public BalanceViewHolder(@NonNull View itemView) {
+        public BalanceViewHolder(@NonNull View itemView, OnItemClickListener selected) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if(position != 0 || position!= RecyclerView.NO_POSITION){
-                        ExpenseNIncomeModel clickedData = searchedList.get(getAdapterPosition());
+                        TransactionModel clickedData = categoryItemList.get(getAdapterPosition());
                         new AlertDialog.Builder(view.getContext())
                         .setTitle("Delete data")
                         .setMessage("Are you sure you want to delete this data?")
@@ -94,6 +93,7 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
                                 databaseHelper.deleteData(clickedData);
                                 Toast.makeText(view.getContext(), "data deleted", Toast.LENGTH_SHORT).show();
                                 //need to refresh the list
+                                selected.onDeleteClick(position);
                             }
                         })
                         .setNegativeButton(android.R.string.no, null)
@@ -101,16 +101,15 @@ public class BalanceAdapter extends RecyclerView.Adapter<BalanceAdapter.BalanceV
                         .show();
                     }
                 }
-
             });
         }
-
-
     }
 
     interface OnItemClickListener{
-        void onItemClick(int i);
+        void onDeleteClick(int i);
     }
 
-
+    public void setOnItemClickListener(OnItemClickListener selected) {
+        mSelected = selected;
+    }
 }

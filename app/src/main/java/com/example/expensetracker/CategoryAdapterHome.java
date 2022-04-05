@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class CategoryAdapterHome {
     private CircleListView circleListView;
-    private List<CategoryItem> categoryItemList;
+    private List<TransactionModel> categoryItemList;
 
     public CategoryAdapterHome(CircleListView circleListView) {
         this.circleListView = circleListView;

@@ -4,29 +4,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     ListView listViewResults;
-    List<ExpenseNIncomeModel> populateList;
+    List<TransactionModel> populateList;
     String query;
     Toolbar toolBar2;
     DatabaseHelper databaseHelper;
@@ -64,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
         listViewResults.setOnItemClickListener((AdapterView<?> adapterView, View view, int i, long l)-> {
-            ExpenseNIncomeModel clickedData = (ExpenseNIncomeModel) adapterView.getItemAtPosition(i);
+            TransactionModel clickedData = (TransactionModel) adapterView.getItemAtPosition(i);
 
             new AlertDialog.Builder(this)
                     .setTitle("Delete data")

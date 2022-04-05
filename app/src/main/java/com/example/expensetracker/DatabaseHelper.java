@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.expensetracker.ExpenseNIncomeModel;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String EXPENSE_TABLE = "EXPENSE_TABLE";
@@ -28,7 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_DATE = "COLUMN_DATE";
     public static final String COLUMN_GROUP = "COLUMN_GROUP";
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    SQLiteDatabase db;
     Context context;
 
     public DatabaseHelper(@Nullable Context context) {
@@ -52,24 +49,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(ExpenseNIncomeModel expenseNIncomeModel) {
+    public boolean addData(TransactionModel transactionModel) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put(COLUMN_DATE, dateFormat.format(expenseNIncomeModel.getDate()));
-            cv.put(COLUMN_CATEGORY, expenseNIncomeModel.getCategory());
-            cv.put(COLUMN_AMOUNT, expenseNIncomeModel.getAmount());
-            cv.put(COLUMN_NOTE, expenseNIncomeModel.getNote());
-            cv.put(COLUMN_GROUP, expenseNIncomeModel.getGroup());
+            cv.put(COLUMN_DATE, dateFormat.format(transactionModel.getDate()));
+            cv.put(COLUMN_CATEGORY, transactionModel.getCategory());
+            cv.put(COLUMN_AMOUNT, transactionModel.getAmount());
+            cv.put(COLUMN_NOTE, transactionModel.getNote());
+            cv.put(COLUMN_GROUP, transactionModel.getGroup());
             return db.insert(EXPENSE_TABLE, null, cv) > 0;
         } catch (Exception ex) {
             return false;
         }
     }
 
-    public boolean deleteData(ExpenseNIncomeModel expenseNIncomeModel) {
+    public boolean deleteData(TransactionModel transactionModel) {
 
-        String deleteQuery = "DELETE FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_ID + " = " + expenseNIncomeModel.getId();
+        String deleteQuery = "DELETE FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_ID + " = " + transactionModel.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(deleteQuery, null);
         if (cursor.moveToFirst()) {
@@ -79,10 +76,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public List<ExpenseNIncomeModel> getSearchedData(String item) {
+    public List<TransactionModel> getSearchedData(String item) {
 
         //create an empty arrayList
-        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        List<TransactionModel> returnList = new ArrayList<>();
         //search query
         String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')";
 
@@ -102,8 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                     Log.d("MyHelper", id + " " + dateStr + " " + cat + " " + note + " " + group + " " + amount);
 
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id, date, cat, note, group, amount);
-                    returnList.add(expenseNIncomeModel1);
+                    TransactionModel transactionModel1 = new TransactionModel(id, date, cat, note, group, amount);
+                    returnList.add(transactionModel1);
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -119,8 +116,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public List<ExpenseNIncomeModel> getAllData() {
-        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+    public List<TransactionModel> getAllData() {
+        List<TransactionModel> returnList = new ArrayList<>();
 
         String statStr = "SELECT * FROM " + EXPENSE_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -136,8 +133,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String group = cursor.getString(4);
                     double amount = cursor.getDouble(5);
                     Date date = dateFormat.parse(dateStr);
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id, date, cat, note, group, amount);
-                    returnList.add(expenseNIncomeModel1);
+                    TransactionModel transactionModel1 = new TransactionModel(id, date, cat, note, group, amount);
+                    returnList.add(transactionModel1);
 
                 } catch (ParseException ps) {
                     ps.printStackTrace();
@@ -150,10 +147,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 // getDateByDate
-    public List<ExpenseNIncomeModel> getDataByDate(Date today) {
+    public ArrayList<TransactionModel> getDataByDate(Date today) {
 
         //create an empty arrayList
-        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
         String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + "= " + "'" + dateFormat.format(today) + "'";
 
@@ -171,8 +168,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     double amount = cursor.getDouble(5);
                     Date date = dateFormat.parse(dateStr);
                     Log.d("MyHelper", id + " " + dateStr + " " + cat + " " + note + " " + group + " " + amount);
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id, date, cat, note, group, amount);
-                    returnList.add(expenseNIncomeModel1);
+                    TransactionModel transactionModel1 = new TransactionModel(id, date, cat, note, group, amount);
+                    returnList.add(transactionModel1);
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -181,19 +178,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     ex.printStackTrace();
                 }
             } while (cursor.moveToNext());
-
-        } else {
         }
-
         return returnList;
     }
 
     // getDateByYear
 
-    public List<ExpenseNIncomeModel> getDataByYear(String year) {
+    public ArrayList<TransactionModel> getDataByYear(String year) {
 
         //create an empty arrayList
-        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
         String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'";
 
@@ -210,8 +204,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String group = cursor.getString(4);
                     double amount = cursor.getDouble(5);
                     Date date = dateFormat.parse(dateStr);
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id, date, cat, note, group, amount);
-                    returnList.add(expenseNIncomeModel1);
+                    TransactionModel transactionModel1 = new TransactionModel(id, date, cat, note, group, amount);
+                    returnList.add(transactionModel1);
 
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -221,7 +215,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             } while (cursor.moveToNext());
 
-        } else {
         }
 
         return returnList;
@@ -229,10 +222,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // getDateByYear
 
-    public List<ExpenseNIncomeModel> getDataByMonth(String month) {
+    public ArrayList<TransactionModel> getDataByMonth(String month) {
 
         //create an empty arrayList
-        List<ExpenseNIncomeModel> returnList = new ArrayList<>();
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
         String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'";
         Log.d("updateMonth", queryString);
@@ -249,8 +242,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String group = cursor.getString(4);
                     double amount = cursor.getDouble(5);
                     Date date = dateFormat.parse(dateStr);
-                    ExpenseNIncomeModel expenseNIncomeModel1 = new ExpenseNIncomeModel(id, date, cat, note, group, amount);
-                    returnList.add(expenseNIncomeModel1);
+                    TransactionModel transactionModel1 = new TransactionModel(id, date, cat, note, group, amount);
+                    returnList.add(transactionModel1);
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Toast.makeText(context, "date parse error", Toast.LENGTH_SHORT).show();
@@ -259,14 +252,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             } while (cursor.moveToNext());
 
-        } else {
         }
 
         return returnList;
     }
 
-    public ArrayList<PieModel> Pie(Date today) {
-        ArrayList<PieModel> returnList = new ArrayList<>();
+    public ArrayList<TransactionModel> Pie(Date today) {
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " = " + "'" + dateFormat.format(today) + "'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
@@ -277,8 +269,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 try {
                     String cat = cursor.getString(0);
-                    String amount = cursor.getString(1);
-                    PieModel pieModel = new PieModel(cat, amount);
+                    double amount = cursor.getDouble(1);
+                    TransactionModel pieModel = new TransactionModel(cat, amount);
                     returnList.add(pieModel);
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -288,8 +280,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public ArrayList<PieModel> PieMonth(String month) {
-        ArrayList<PieModel> returnList = new ArrayList<>();
+    public ArrayList<TransactionModel> PieMonth(String month) {
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
@@ -300,8 +292,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 try {
                     String cat = cursor.getString(0);
-                    String amount = cursor.getString(1);
-                    PieModel pieModel = new PieModel(cat, amount);
+                    double amount = cursor.getDouble(1);
+                    TransactionModel pieModel = new TransactionModel(cat, amount);
                     returnList.add(pieModel);
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -311,8 +303,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public ArrayList<PieModel> PieYear(String year) {
-        ArrayList<PieModel> returnList = new ArrayList<>();
+    public ArrayList<TransactionModel> PieYear(String year) {
+        ArrayList<TransactionModel> returnList = new ArrayList<>();
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
@@ -323,8 +315,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 try {
                     String cat = cursor.getString(0);
-                    String amount = cursor.getString(1);
-                    PieModel pieModel = new PieModel(cat, amount);
+                    double amount = cursor.getDouble(1);
+                    TransactionModel pieModel = new TransactionModel(cat, amount);
                     returnList.add(pieModel);
                 } catch (Exception ex) {
                     ex.printStackTrace();

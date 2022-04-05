@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryAdapter extends ArrayAdapter {
-    List<CategoryItem> categoryItemList = new ArrayList<>();
+    List<TransactionModel> categoryItemList = new ArrayList<>();
     int category_item_id;
 
-    public CategoryAdapter(@NonNull Context context, int resource, @NonNull List<CategoryItem> objects) {
+    public CategoryAdapter(@NonNull Context context, int resource, @NonNull List<TransactionModel> objects) {
         super(context, resource, objects);
         categoryItemList = objects;
         category_item_id = resource;
@@ -41,8 +41,8 @@ public class CategoryAdapter extends ArrayAdapter {
         TextView txtViewCategories = view.findViewById(R.id.txtViewCategory);
         ImageView imgViewCategories = view.findViewById(R.id.imgViewCategory);
 
-        txtViewCategories.setText(categoryItemList.get(i).getCategoryName());
-        imgViewCategories.setImageResource(categoryItemList.get(i).getCategoryPic());
+        txtViewCategories.setText(categoryItemList.get(i).getCategory());
+        imgViewCategories.setImageResource(categoryItemList.get(i).getPic());
 
         return view;
     }
