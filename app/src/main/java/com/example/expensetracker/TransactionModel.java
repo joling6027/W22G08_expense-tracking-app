@@ -3,7 +3,7 @@ package com.example.expensetracker;
 import java.io.Serializable;
 import java.util.Date;
 
-public class ExpenseNIncomeModel implements Serializable {
+public class TransactionModel implements Serializable {
 
     private int id;
     private Date date;
@@ -13,7 +13,7 @@ public class ExpenseNIncomeModel implements Serializable {
     private String group;
     private int pic;
 
-    public ExpenseNIncomeModel(int id, Date date, String category, String note, String group,double amount) {
+    public TransactionModel(int id, Date date, String category, String note, String group, double amount) {
         this.id = id;
         this.date = date;
         this.category = category;
@@ -22,14 +22,26 @@ public class ExpenseNIncomeModel implements Serializable {
         this.group=group;
     }
 
-    public ExpenseNIncomeModel(int id, String category, String note, double amount) {
+
+    public TransactionModel() {
+
+    }
+
+    public TransactionModel(int id, String category, String note, double amount) {
         this.id = id;
         this.category = category;
         this.note = note;
         this.amount = amount;
     }
 
-    public ExpenseNIncomeModel() {
+    public TransactionModel(String category, int pic) {
+        this.category = category;
+        this.pic = pic;
+    }
+
+    public TransactionModel(String category, double amount) {
+        this.category = category;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -67,6 +79,7 @@ public class ExpenseNIncomeModel implements Serializable {
     public double getAmount() {
         return amount;
     }
+
     public void setAmount(double amount) {
         this.amount = amount;
     }

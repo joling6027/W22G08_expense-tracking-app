@@ -10,10 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class SearchListAdapter extends BaseAdapter {
-    List<ExpenseNIncomeModel> searchedList;
+    List<TransactionModel> searchedList;
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public SearchListAdapter(List<ExpenseNIncomeModel> searchedList) {
+    public SearchListAdapter(List<TransactionModel> searchedList) {
         this.searchedList = searchedList;
     }
 
@@ -23,7 +23,7 @@ public class SearchListAdapter extends BaseAdapter {
     }
 
     @Override
-    public ExpenseNIncomeModel getItem(int i) {
+    public TransactionModel getItem(int i) {
         return searchedList.get(i);
     }
 

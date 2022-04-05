@@ -8,20 +8,21 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#f6f5f5</color>
-    <color name="splash_background">#048998</color>
     <color name="category_background">#DEDADA</color>
 
-    <color name="slice1">#DAF7A6</color>
-    <color name="slice2">#FFC300</color>
-    <color name="slice3">#FF5733</color>
-    <color name="slice4">#C70039</color>
-    <color name="slice5">#900C3F</color>
-    <color name="slice6">#581845</color>
-    <color name="slice7">#7393B3</color>
-    <color name="slice8">#5F9EA0</color>
-    <color name="slice9">#98FB98</color>
-    <color name="slice10">#FF69B4</color>
-    <color name="slice11">#5D3FD3</color>
-    <color name="slice12">#E97451</color>
+    <array name = "pieColors">
+        <item>#900C3F</item>
+        <item>#C70039</item>
+        <item>#FF5733</item>
+        <item>#C7BE00</item>
+        <item>#00C766</item>
+        <item>#00BCC7</item>
+        <item>#0085C7</item>
+        <item>#A500C7</item>
+        <item>#C7008D</item>
+        <item>#C70072</item>
+        <item>#C70050</item>
+        <item>#DAF7A6</item>
+    </array>
 
 </resources>

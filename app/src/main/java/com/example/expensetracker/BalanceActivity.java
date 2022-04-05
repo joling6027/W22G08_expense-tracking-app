@@ -16,6 +16,8 @@ public class BalanceActivity extends AppCompatActivity {
     RecyclerView recyclerViewResults;
     Toolbar toolBarBalance;
     //    ArrayAdapter arrayAdapter;
+    ArrayList<TransactionModel> categoryItemList;
+    BalanceAdapter balanceAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +29,28 @@ public class BalanceActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
-
         recyclerViewResults = findViewById(R.id.recyclerViewBalance);
 
         try {
-                ArrayList<ExpenseNIncomeModel> populateList= (ArrayList<ExpenseNIncomeModel>) getIntent().getExtras().getSerializable("populateList");
-                BalanceAdapter balanceAdapter = new BalanceAdapter(populateList);
+                categoryItemList = (ArrayList<TransactionModel>) getIntent().getExtras().getSerializable("populateList");
+                balanceAdapter = new BalanceAdapter(categoryItemList);
                 recyclerViewResults.setLayoutManager(new LinearLayoutManager(this));
                 recyclerViewResults.setAdapter(balanceAdapter);
+                balanceAdapter.setOnItemClickListener(new BalanceAdapter.OnItemClickListener() {
+                    @Override
+                    public void onDeleteClick(int i) {
+                        deleteItem(i);
+                    }
+                });
         }catch (Exception ex){
             Toast.makeText(BalanceActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
             ex.printStackTrace();
         }
+    }
 
-
+    public void deleteItem(int position) {
+        categoryItemList.remove(position);
+        balanceAdapter.notifyItemRemoved(position);
     }
 }
 

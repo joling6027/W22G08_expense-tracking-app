@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CalculatorKeyboard {
-
+    //variables
     private Context context;
     private View keyboard;
     private TextView[] characters, operators;
@@ -20,45 +20,59 @@ public class CalculatorKeyboard {
     private Double result, finalResult;
     private boolean add, subtract, multiply, divide;
 
-    public CalculatorKeyboard(Context c, View container, boolean is_reference) {
+    //constructor
+    public CalculatorKeyboard(Context c, View view, boolean is_reference) {
         this.context = c;
         if (is_reference) {
-            keyboard = container.findViewById(R.id.keyboard_parent);
+            //get the keyboard view inflated and initialize components
+            keyboard = view.findViewById(R.id.keyboard_parent);
             initializeComponents();
         } else {
+            //if no keyboard view is inflated, inflate keyboard layout
             keyboard = View.inflate(context, R.layout.keyboard, null);
+            //initialize components
             initializeComponents();
-            ((ViewGroup) container).removeAllViews();
-            ((ViewGroup) container).addView(keyboard);
+            //remove original view
+            ((ViewGroup) view).removeAllViews();
+            //and custom keyboard view
+            ((ViewGroup) view).addView(keyboard);
         }
     }
 
     private void initializeComponents() {
+        //array of ids
         int[] ids = {
                 R.id.key_one, R.id.key_two, R.id.key_three, R.id.key_four, R.id.key_five, R.id.key_six,
                 R.id.key_seven, R.id.key_eight, R.id.key_nine, R.id.key_dot, R.id.key_zero
         };
 
+        //array of operator ids
         int[] operatorsIds = {
                 R.id.key_plus, R.id.key_minus, R.id.key_multiply, R.id.key_equal,
                 R.id.key_divide, R.id.key_clear, R.id.key_back
         };
 
+        //array of operator text
         String[] operatorsInputs = {
                 "+", "-", "*", "=", "÷", "C", "Back"
         };
 
+        //array of number text
         String[] input = {
                 "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0"
         };
 
+        //textview for number characters
         characters = new TextView[ids.length];
         for (int i = 0; i < ids.length; i++) {
+            //for all number characters, get view and get inputted number
             characters[i] = keyboard.findViewById(ids[i]);
             characters[i].setText(input[i]);
         }
+        //textview for operators
         operators = new TextView[operatorsIds.length];
         for (int j = 0; j < operators.length; j++) {
+            //for all operators, get view and get inputted operator
             operators[j] = keyboard.findViewById(operatorsIds[j]);
             operators[j].setText(operatorsInputs[j]);
         }
@@ -68,7 +82,9 @@ public class CalculatorKeyboard {
             characters[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //string to store character text
                     String ss = characters[finalI].getText().toString();
+                    //display text in edittext box
                     editTxtAmount.getText().insert(editTxtAmount.getSelectionStart(), ss);
                 }
             });
@@ -221,6 +237,7 @@ public class CalculatorKeyboard {
         });
     }
 
+    //when edittext is in focus, slide in the keyboard
     public void show(EditText focus) {
         this.editTxtAmount = focus;
         keyboard.animate().y(0).setListener(new AnimatorListenerAdapter() {
@@ -232,6 +249,7 @@ public class CalculatorKeyboard {
         });
     }
 
+    //hide the keyboard
     public void hide() {
         if (isVisible()) {
             keyboard.animate().y(keyboard.getHeight()).setListener(new AnimatorListenerAdapter() {
@@ -244,8 +262,8 @@ public class CalculatorKeyboard {
         }
     }
 
+    //make keyboard visible
     boolean isVisible() {
         return keyboard.getVisibility() == View.VISIBLE;
     }
-
 }

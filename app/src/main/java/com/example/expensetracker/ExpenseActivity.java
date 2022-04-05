@@ -27,7 +27,7 @@ import java.util.Locale;
 
 public class ExpenseActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     //Variables
-    List<CategoryItem> categoryItemList = new ArrayList<>();
+    List<TransactionModel> categoryItemList = new ArrayList<>();
     Button btnChooseCategory;
     EditText editTxtAmount, editTxtNotes;
     GridView gridViewCategory;
@@ -112,17 +112,17 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                     //get database
                     DatabaseHelper DB = new DatabaseHelper(getApplicationContext());
                     //create a object
-                    ExpenseNIncomeModel expenseNIncomeModel = new ExpenseNIncomeModel();
+                    TransactionModel transactionModel = new TransactionModel();
                     //try and catch exception for inputs
                     try{
                         //store inputs into object
-                        expenseNIncomeModel.setAmount(-(Double.parseDouble(editTxtAmount.getText().toString())));
-                        expenseNIncomeModel.setNote(editTxtNotes.getText().toString());
-                        expenseNIncomeModel.setCategory(categoryItemList.get(i).categoryName);
-                        expenseNIncomeModel.setGroup("expense");
-                        expenseNIncomeModel.setDate(dateFormat.parse(currentDate));
+                        transactionModel.setAmount(-(Double.parseDouble(editTxtAmount.getText().toString())));
+                        transactionModel.setNote(editTxtNotes.getText().toString());
+                        transactionModel.setCategory(categoryItemList.get(i).getCategory());
+                        transactionModel.setGroup("expense");
+                        transactionModel.setDate(dateFormat.parse(currentDate));
                         if (calendar.getTime() != null){
-                            expenseNIncomeModel.setDate(calendar.getTime());
+                            transactionModel.setDate(calendar.getTime());
                         }
                         //catch exception for when amount is empty
                     } catch (NumberFormatException ex) {
@@ -132,12 +132,12 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
                         ex.printStackTrace();
                     }
                     //check if inputs are stored successfully
-                    Boolean success = DB.addData(expenseNIncomeModel);
+                    Boolean success = DB.addData(transactionModel);
                     if (success == true) {
                         //display entry stored successfully and move back to home page
                         Toast.makeText(ExpenseActivity.this, "Entry Inserted", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(ExpenseActivity.this, MainActivity.class);
-                        intent.putExtra("date", expenseNIncomeModel.getDate());
+                        intent.putExtra("date", transactionModel.getDate());
                         startActivity(intent);
                     } else {
                         //display entry stored unsuccessfully and stay in expense entry page
@@ -151,18 +151,18 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
 
     //To add category details into a list
     private void addData() {
-        categoryItemList.add(new CategoryItem("Car", R.drawable.car1));
-        categoryItemList.add(new CategoryItem("Pet", R.drawable.pet1));
-        categoryItemList.add(new CategoryItem("Grocery", R.drawable.grocery1));
-        categoryItemList.add(new CategoryItem("Entertainment", R.drawable.entertainment));
-        categoryItemList.add(new CategoryItem("Gift", R.drawable.gift1));
-        categoryItemList.add(new CategoryItem("Dining Out", R.drawable.food1));
-        categoryItemList.add(new CategoryItem("Home", R.drawable.house));
-        categoryItemList.add(new CategoryItem("Phone", R.drawable.smartphone));
-        categoryItemList.add(new CategoryItem("Sports", R.drawable.sports1));
-        categoryItemList.add(new CategoryItem("Medical", R.drawable.medical1));
-        categoryItemList.add(new CategoryItem("Transportation", R.drawable.transportation));
-        categoryItemList.add(new CategoryItem("Clothing", R.drawable.clothing1));
+        categoryItemList.add(new TransactionModel("Car", R.drawable.car1));
+        categoryItemList.add(new TransactionModel("Pet", R.drawable.pet1));
+        categoryItemList.add(new TransactionModel("Grocery", R.drawable.grocery1));
+        categoryItemList.add(new TransactionModel("Entertainment", R.drawable.entertainment));
+        categoryItemList.add(new TransactionModel("Gift", R.drawable.gift));
+        categoryItemList.add(new TransactionModel("Dine Out", R.drawable.food1));
+        categoryItemList.add(new TransactionModel("Home", R.drawable.house));
+        categoryItemList.add(new TransactionModel("Phone", R.drawable.smartphone));
+        categoryItemList.add(new TransactionModel("Sports", R.drawable.sports));
+        categoryItemList.add(new TransactionModel("Medical", R.drawable.medical));
+        categoryItemList.add(new TransactionModel("Transportation", R.drawable.transportation));
+        categoryItemList.add(new TransactionModel("Clothing", R.drawable.clothing1));
     }
 
     //get calendar
