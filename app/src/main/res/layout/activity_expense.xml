@@ -166,7 +166,7 @@
         app:layout_constraintTop_toTopOf="@+id/gridViewCategories">
 
         <include
-            layout="@layout/keyboard"
+            layout="@layout/layout_keyboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

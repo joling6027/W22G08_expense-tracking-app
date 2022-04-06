@@ -103,7 +103,7 @@ public class ExpenseActivity extends AppCompatActivity implements DatePickerDial
             imm.hideSoftInputFromWindow( view.getWindowToken(), 0);
             //display gridView
             gridViewCategory = findViewById(R.id.gridViewCategories);
-            CategoryAdapter cAdapter = new CategoryAdapter(this, R.layout.category_item, categoryItemList);
+            GridViewAdapter cAdapter = new GridViewAdapter(this, R.layout.layout_categoryitem, categoryItemList);
             gridViewCategory.setAdapter(cAdapter);
             //when a category is chosen
             gridViewCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {

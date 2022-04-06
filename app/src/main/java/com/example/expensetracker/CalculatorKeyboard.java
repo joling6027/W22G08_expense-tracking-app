@@ -3,6 +3,10 @@ package com.example.expensetracker;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -23,18 +27,14 @@ public class CalculatorKeyboard {
     //constructor
     public CalculatorKeyboard(Context c, View view, boolean is_reference) {
         this.context = c;
+        //inflate layout
         if (is_reference) {
-            //get the keyboard view inflated and initialize components
             keyboard = view.findViewById(R.id.keyboard_parent);
             initializeComponents();
         } else {
-            //if no keyboard view is inflated, inflate keyboard layout
-            keyboard = View.inflate(context, R.layout.keyboard, null);
-            //initialize components
+            keyboard = View.inflate(context, R.layout.layout_keyboard, null);
             initializeComponents();
-            //remove original view
             ((ViewGroup) view).removeAllViews();
-            //and custom keyboard view
             ((ViewGroup) view).addView(keyboard);
         }
     }
@@ -42,14 +42,14 @@ public class CalculatorKeyboard {
     private void initializeComponents() {
         //array of ids
         int[] ids = {
-                R.id.key_one, R.id.key_two, R.id.key_three, R.id.key_four, R.id.key_five, R.id.key_six,
-                R.id.key_seven, R.id.key_eight, R.id.key_nine, R.id.key_dot, R.id.key_zero
+                R.id.keyOne, R.id.keyTwo, R.id.keyThree, R.id.keyFour, R.id.keyFive, R.id.keySix,
+                R.id.keySeven, R.id.keyEight, R.id.keyNine, R.id.keyDot, R.id.keyZero
         };
 
         //array of operator ids
         int[] operatorsIds = {
-                R.id.key_plus, R.id.key_minus, R.id.key_multiply, R.id.key_equal,
-                R.id.key_divide, R.id.key_clear, R.id.key_back
+                R.id.keyPlus, R.id.keyMinus, R.id.keyMultiply, R.id.keyEqual,
+                R.id.keyDivide, R.id.keyClear, R.id.keyBack
         };
 
         //array of operator text
@@ -77,91 +77,85 @@ public class CalculatorKeyboard {
             operators[j].setText(operatorsInputs[j]);
         }
 
-        for (int i = 0; i < ids.length; i++) {
-            final int finalI = i;
-            characters[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //string to store character text
-                    String ss = characters[finalI].getText().toString();
-                    //display text in edittext box
-                    editTxtAmount.getText().insert(editTxtAmount.getSelectionStart(), ss);
-                }
-            });
-        }
         //Delete
-        keyboard.findViewById(R.id.key_back).setOnTouchListener(new View.OnTouchListener() {
+        keyboard.findViewById(operatorsIds[6]).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    view.setBackgroundResource(R.drawable.key_bg2_n);
                     editTxtAmount.setSelection(editTxtAmount.getText().length());
                     editTxtAmount.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    view.setBackgroundResource(R.drawable.key_bg2_y);
                 }
                 return true;
             }
         });
         //Clear
-        keyboard.findViewById(R.id.key_clear).setOnTouchListener(new View.OnTouchListener() {
+        keyboard.findViewById(operatorsIds[5]).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    view.setBackgroundResource(R.drawable.key_bg2_n);
                     editTxtAmount.setText("");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    view.setBackgroundResource(R.drawable.key_bg2_y);
                 }
                 return true;
             }
         });
+
         //Dot
-        keyboard.findViewById(R.id.key_dot).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + ".");
+        keyboard.findViewById(ids[9]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s.", editTxtAmount.getText()));
         });
         //1
-        keyboard.findViewById(R.id.key_one).setOnClickListener((View view) -> {
-            editTxtAmount.setSelection(editTxtAmount.getText().length());
-            editTxtAmount.setText(editTxtAmount.getText() + "1");
+        keyboard.findViewById(ids[0]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s1", editTxtAmount.getText()));
         });
         //2
-        keyboard.findViewById(R.id.key_two).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "2");
+        keyboard.findViewById(ids[1]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s2", editTxtAmount.getText()));
         });
         //3
-        keyboard.findViewById(R.id.key_three).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "3");
+        keyboard.findViewById(ids[2]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s3", editTxtAmount.getText()));
         });
         //4
-        keyboard.findViewById(R.id.key_four).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "4");
+        keyboard.findViewById(ids[3]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s4", editTxtAmount.getText()));
         });
         //5
-        keyboard.findViewById(R.id.key_five).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "5");
+        keyboard.findViewById(ids[4]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s5", editTxtAmount.getText()));
         });
         //6
-        keyboard.findViewById(R.id.key_six).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "6");
+        keyboard.findViewById(ids[5]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s6", editTxtAmount.getText()));
         });
         //7
-        keyboard.findViewById(R.id.key_seven).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "7");
+        keyboard.findViewById(ids[6]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s7", editTxtAmount.getText()));
         });
         //8
-        keyboard.findViewById(R.id.key_eight).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "8");
+        keyboard.findViewById(ids[7]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s8", editTxtAmount.getText()));
         });
         //9
-        keyboard.findViewById(R.id.key_nine).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "9");
+        keyboard.findViewById(ids[8]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s9", editTxtAmount.getText()));
         });
         //0
-        keyboard.findViewById(R.id.key_zero).setOnClickListener((View view) -> {
-            editTxtAmount.setText(editTxtAmount.getText() + "0");
+        keyboard.findViewById(ids[10]).setOnClickListener((View view) -> {
+            editTxtAmount.setText(String.format("%s0", editTxtAmount.getText()));
         });
         //Plus
-        keyboard.findViewById(R.id.key_plus).setOnClickListener((View view) -> {
+        keyboard.findViewById(operatorsIds[0]).setOnClickListener((View view) -> {
             try {
                 if (editTxtAmount == null) {
                     editTxtAmount.setText("");
                 } else {
-                    result = Double.parseDouble(editTxtAmount.getText() + "");
+                    result = Double.parseDouble(String.valueOf(editTxtAmount.getText()));
                     add = true;
                     editTxtAmount.setText(null);
                 }
@@ -170,12 +164,12 @@ public class CalculatorKeyboard {
             }
         });
         //Minus
-        keyboard.findViewById(R.id.key_minus).setOnClickListener((View view) -> {
+        keyboard.findViewById(operatorsIds[1]).setOnClickListener((View view) -> {
             try {
                 if (editTxtAmount == null) {
                     editTxtAmount.setText("");
                 } else {
-                    result = Double.parseDouble(editTxtAmount.getText() + "");
+                    result = Double.parseDouble(String.valueOf(editTxtAmount.getText()));
                     subtract = true;
                     editTxtAmount.setText(null);
                 }
@@ -184,12 +178,12 @@ public class CalculatorKeyboard {
             }
         });
         //Multiply
-        keyboard.findViewById(R.id.key_multiply).setOnClickListener((View view) -> {
+        keyboard.findViewById(operatorsIds[2]).setOnClickListener((View view) -> {
             try {
                 if (editTxtAmount == null) {
                     editTxtAmount.setText("");
                 } else {
-                    result = Double.parseDouble(editTxtAmount.getText() + "");
+                    result = Double.parseDouble(String.valueOf(editTxtAmount.getText()));
                     multiply = true;
                     editTxtAmount.setText(null);
                 }
@@ -198,12 +192,12 @@ public class CalculatorKeyboard {
             }
         });
         //Divide
-        keyboard.findViewById(R.id.key_divide).setOnClickListener((View view) -> {
+        keyboard.findViewById(operatorsIds[4]).setOnClickListener((View view) -> {
             try {
                 if (editTxtAmount == null) {
                     editTxtAmount.setText("");
                 } else {
-                    result = Double.parseDouble(editTxtAmount.getText() + "");
+                    result = Double.parseDouble(String.valueOf(editTxtAmount.getText()));
                     divide = true;
                     editTxtAmount.setText(null);
                 }
@@ -212,23 +206,23 @@ public class CalculatorKeyboard {
             }
         });
         //Equal
-        keyboard.findViewById(R.id.key_equal).setOnClickListener((View view) -> {
+        keyboard.findViewById(operatorsIds[3]).setOnClickListener((View view) -> {
             try {
-                finalResult = Double.parseDouble(editTxtAmount.getText() + "");
-                if (add == true) {
-                    editTxtAmount.setText(result + finalResult + "");
+                finalResult = Double.parseDouble(String.valueOf(editTxtAmount.getText()));
+                if (add) {
+                    editTxtAmount.setText(String.valueOf(result + finalResult));
                     add = false;
                 }
-                if (subtract == true) {
-                    editTxtAmount.setText(result - finalResult + "");
+                if (subtract) {
+                    editTxtAmount.setText(String.valueOf(result - finalResult));
                     subtract = false;
                 }
-                if (multiply == true) {
-                    editTxtAmount.setText(result * finalResult + "");
+                if (multiply) {
+                    editTxtAmount.setText(String.valueOf(result * finalResult));
                     multiply = false;
                 }
-                if (divide == true) {
-                    editTxtAmount.setText(result / finalResult + "");
+                if (divide) {
+                    editTxtAmount.setText(String.valueOf(result / finalResult));
                     divide = false;
                 }
             } catch (Exception ex) {
@@ -266,4 +260,5 @@ public class CalculatorKeyboard {
     boolean isVisible() {
         return keyboard.getVisibility() == View.VISIBLE;
     }
+
 }

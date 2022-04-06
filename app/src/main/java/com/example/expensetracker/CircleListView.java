@@ -17,7 +17,7 @@ public class CircleListView extends ViewGroup {
     private Rect itemImg; //A rectangle for item image
     private Rect itemName; //A rectangle for item name
     private Paint paint; //Painting brush
-    private CategoryAdapterHome adapterHome = new CategoryAdapterHome(this) {
+    private CricleListViewAdapter adapterHome = new CricleListViewAdapter(this) {
         @Override
         public View getView(int position) {
             return new View(getContext());
@@ -118,7 +118,7 @@ public class CircleListView extends ViewGroup {
         }
     }
 
-    public void setAdapter(CategoryAdapterHome adapter) {
+    public void setAdapter(CricleListViewAdapter adapter) {
         this.adapterHome = adapter;
         //draw items with inflated layout
         refreshList();

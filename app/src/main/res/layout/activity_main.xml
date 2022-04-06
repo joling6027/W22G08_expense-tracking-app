@@ -72,6 +72,8 @@
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="#017D91"
             android:background="@color/white"
             android:gravity="center"
             android:text="TextView"
