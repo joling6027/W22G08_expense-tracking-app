@@ -3,6 +3,10 @@ package com.example.expensetracker;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.XmlResourceParser;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -38,14 +42,14 @@ public class CalculatorKeyboard {
     private void initializeComponents() {
         //array of ids
         int[] ids = {
-                R.id.key_one, R.id.key_two, R.id.key_three, R.id.key_four, R.id.key_five, R.id.key_six,
-                R.id.key_seven, R.id.key_eight, R.id.key_nine, R.id.key_dot, R.id.key_zero
+                R.id.keyOne, R.id.keyTwo, R.id.keyThree, R.id.keyFour, R.id.keyFive, R.id.keySix,
+                R.id.keySeven, R.id.keyEight, R.id.keyNine, R.id.keyDot, R.id.keyZero
         };
 
         //array of operator ids
         int[] operatorsIds = {
-                R.id.key_plus, R.id.key_minus, R.id.key_multiply, R.id.key_equal,
-                R.id.key_divide, R.id.key_clear, R.id.key_back
+                R.id.keyPlus, R.id.keyMinus, R.id.keyMultiply, R.id.keyEqual,
+                R.id.keyDivide, R.id.keyClear, R.id.keyBack
         };
 
         //array of operator text
@@ -78,8 +82,11 @@ public class CalculatorKeyboard {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    view.setBackgroundResource(R.drawable.key_bg2_n);
                     editTxtAmount.setSelection(editTxtAmount.getText().length());
                     editTxtAmount.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    view.setBackgroundResource(R.drawable.key_bg2_y);
                 }
                 return true;
             }
@@ -89,18 +96,21 @@ public class CalculatorKeyboard {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    view.setBackgroundResource(R.drawable.key_bg2_n);
                     editTxtAmount.setText("");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    view.setBackgroundResource(R.drawable.key_bg2_y);
                 }
                 return true;
             }
         });
+
         //Dot
         keyboard.findViewById(ids[9]).setOnClickListener((View view) -> {
             editTxtAmount.setText(String.format("%s.", editTxtAmount.getText()));
         });
         //1
         keyboard.findViewById(ids[0]).setOnClickListener((View view) -> {
-            editTxtAmount.setSelection(editTxtAmount.getText().length());
             editTxtAmount.setText(String.format("%s1", editTxtAmount.getText()));
         });
         //2
@@ -250,4 +260,5 @@ public class CalculatorKeyboard {
     boolean isVisible() {
         return keyboard.getVisibility() == View.VISIBLE;
     }
+
 }
