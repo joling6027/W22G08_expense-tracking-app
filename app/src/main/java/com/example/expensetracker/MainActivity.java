@@ -1,7 +1,6 @@
 package com.example.expensetracker;
 
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
@@ -19,7 +18,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     String selectedCat=null;
     RelativeLayout relativeLayout;
     CircleListView circleListView;
-    CategoryAdapterHome categoryAdapterHome;
+    CricleListViewAdapter cricleListViewAdapter;
     ImageView categoryImg, imgViewTitle;
     TransactionModel categoryItem;
     PieChart pieChart;
@@ -170,10 +168,10 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.relLayoutHome);
         circleListView = findViewById(R.id.circle_list_view);
         txtViewItem = findViewById(R.id.txtViewItem);
-        categoryAdapterHome = new CategoryAdapterHome(circleListView) {
+        cricleListViewAdapter = new CricleListViewAdapter(circleListView) {
             @Override
             public View getView(int position) {
-                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.category_item, null);
+                View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.layout_categoryitem, null);
                 categoryName = view.findViewById(R.id.txtViewCategory);
                 categoryImg = view.findViewById(R.id.imgViewCategory);
                 categoryItem = categoryItemList.get(position);
@@ -202,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
                     if(record.getCategory().equals(categoryItemList.get(position).getCategory()) && record.getAmount() != 0)
                     {
                         txtViewItem.setText(String.format("%s \n%s", record.getCategory(), record.getAmount()));
-                        categoryImg.setBackgroundResource(R.drawable.category_backgorund);
+                        categoryImg.setBackgroundResource(R.drawable.category_bg);
                     };
                 }
                 return view;
@@ -212,8 +210,8 @@ public class MainActivity extends AppCompatActivity {
                 return categoryItemList.size();
             }
         };
-        circleListView.setAdapter(categoryAdapterHome);
-        categoryAdapterHome.setPosition(0);
+        circleListView.setAdapter(cricleListViewAdapter);
+        cricleListViewAdapter.setPosition(0);
     }
 
     //create pie chart
@@ -255,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 int itemId=item.getItemId();
                 if(itemId== R.id.month){
                     textViewInterval.setText(monthName.toString());
-                    circleListView.setAdapter(categoryAdapterHome);
+                    circleListView.setAdapter(cricleListViewAdapter);
                     String month=mMonth>8?(mMonth+1)+"":"0"+(mMonth+1);
                     populateList=databaseHelper.getDataByMonth(month);
                     getSummary(populateList,selectedCat);
@@ -266,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(itemId== R.id.year){
                     textViewInterval.setText(mYear+" ");
-                    circleListView.setAdapter(categoryAdapterHome);
+                    circleListView.setAdapter(cricleListViewAdapter);
                     populateList=databaseHelper.getDataByYear(mYear+"");
                     getSummary(populateList,selectedCat);
                     dLayout.closeDrawers();
@@ -289,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             Log.d("selectedTime",selectedDate.toString());
-                            circleListView.setAdapter(categoryAdapterHome);
+                            circleListView.setAdapter(cricleListViewAdapter);
                             populateList=databaseHelper.getDataByDate(selectedDate);
                             getSummary(populateList,selectedCat);
                             pieList = databaseHelper.Pie(selectedDate);

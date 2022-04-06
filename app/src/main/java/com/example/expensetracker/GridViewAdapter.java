@@ -16,11 +16,11 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryAdapter extends ArrayAdapter {
+public class GridViewAdapter extends ArrayAdapter {
     List<TransactionModel> categoryItemList = new ArrayList<>();
     int category_item_id;
 
-    public CategoryAdapter(@NonNull Context context, int resource, @NonNull List<TransactionModel> objects) {
+    public GridViewAdapter(@NonNull Context context, int resource, @NonNull List<TransactionModel> objects) {
         super(context, resource, objects);
         categoryItemList = objects;
         category_item_id = resource;

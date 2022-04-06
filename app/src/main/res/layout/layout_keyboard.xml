@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/keyboard_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:clickable="true"
+    android:background="#838383"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView style="@style/alpha" android:id="@+id/key_clear" android:layout_width="20dp" android:background="@drawable/keyboard_bg2"/>
+        <TextView style="@style/alpha" android:id="@+id/key_back" android:layout_width="20dp" android:background="@drawable/keyboard_bg2"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView style="@style/alpha" android:id="@+id/key_seven" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_eight" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_nine" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_divide" android:background="@drawable/keyboard_bg1" android:layout_width="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView style="@style/alpha" android:id="@+id/key_four" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_five" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_six" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_multiply" android:background="@drawable/keyboard_bg1" android:layout_width="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView style="@style/alpha" android:id="@+id/key_one" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_two" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_three" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_minus" android:background="@drawable/keyboard_bg1" android:layout_width="20dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+        <TextView style="@style/alpha" android:id="@+id/key_dot" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_zero" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_equal" android:background="@drawable/keyboard_bg" android:layout_width="20dp"/>
+        <TextView style="@style/alpha" android:id="@+id/key_plus" android:background="@drawable/keyboard_bg1" android:layout_width="20dp"/>
+    </LinearLayout>
+
+</LinearLayout>

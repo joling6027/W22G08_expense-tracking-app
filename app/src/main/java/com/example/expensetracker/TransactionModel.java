@@ -13,6 +13,10 @@ public class TransactionModel implements Serializable {
     private String group;
     private int pic;
 
+    public TransactionModel() {
+
+    }
+
     public TransactionModel(int id, Date date, String category, String note, String group, double amount) {
         this.id = id;
         this.date = date;
@@ -20,11 +24,6 @@ public class TransactionModel implements Serializable {
         this.note = note;
         this.amount = amount;
         this.group=group;
-    }
-
-
-    public TransactionModel() {
-
     }
 
     public TransactionModel(int id, String category, String note, double amount) {

@@ -4,11 +4,11 @@ import android.view.View;
 
 import java.util.List;
 
-public abstract class CategoryAdapterHome {
+public abstract class CricleListViewAdapter {
     private CircleListView circleListView;
     private List<TransactionModel> categoryItemList;
 
-    public CategoryAdapterHome(CircleListView circleListView) {
+    public CricleListViewAdapter(CircleListView circleListView) {
         this.circleListView = circleListView;
     }
 
