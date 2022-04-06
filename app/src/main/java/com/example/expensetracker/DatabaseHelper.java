@@ -18,7 +18,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String TRANSACTIONS_TABLE = "TRANSACTIONS_TABLE";
+    public static final String EXPENSE_TABLE = "EXPENSE_TABLE";
     public static final String COLUMN_ID = "COLUMN_ID";
     public static final String COLUMN_CATEGORY = "COLUMN_CATEGORY";
     public static final String COLUMN_NOTE = "COLUMN_NOTE";
@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createDatabaseStat = "CREATE TABLE " + TRANSACTIONS_TABLE +
+        String createDatabaseStat = "CREATE TABLE " + EXPENSE_TABLE +
                 "( " + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_DATE + " TEXT, "
                 + COLUMN_CATEGORY + " TEXT, " + COLUMN_NOTE + " TEXT, " + COLUMN_GROUP + " TEXT, " + COLUMN_AMOUNT + " REAL)";
 
@@ -44,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         // Drop older table if exist
-        db.execSQL("DROP TABLE IF EXISTS " + TRANSACTIONS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + EXPENSE_TABLE);
         // Create tables again
         onCreate(db);
     }
@@ -58,7 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(COLUMN_AMOUNT, transactionModel.getAmount());
             cv.put(COLUMN_NOTE, transactionModel.getNote());
             cv.put(COLUMN_GROUP, transactionModel.getGroup());
-            return db.insert(TRANSACTIONS_TABLE, null, cv) > 0;
+            return db.insert(EXPENSE_TABLE, null, cv) > 0;
         } catch (Exception ex) {
             return false;
         }
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean deleteData(TransactionModel transactionModel) {
 
-        String deleteQuery = "DELETE FROM " + TRANSACTIONS_TABLE + " WHERE " + COLUMN_ID + " = " + transactionModel.getId();
+        String deleteQuery = "DELETE FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_ID + " = " + transactionModel.getId();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(deleteQuery, null);
         if (cursor.moveToFirst()) {
@@ -81,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         List<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + TRANSACTIONS_TABLE + " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -119,7 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TransactionModel> getAllData() {
         List<TransactionModel> returnList = new ArrayList<>();
 
-        String statStr = "SELECT * FROM " + TRANSACTIONS_TABLE;
+        String statStr = "SELECT * FROM " + EXPENSE_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(statStr, null);
@@ -152,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + TRANSACTIONS_TABLE + " WHERE " + COLUMN_DATE + "= " + "'" + dateFormat.format(today) + "'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + "= " + "'" + dateFormat.format(today) + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -189,7 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + TRANSACTIONS_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -227,7 +227,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + TRANSACTIONS_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'";
         Log.d("updateMonth", queryString);
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -259,7 +259,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<TransactionModel> Pie(Date today) {
         ArrayList<TransactionModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + TRANSACTIONS_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " = " + "'" + dateFormat.format(today) + "'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
@@ -282,7 +282,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<TransactionModel> PieMonth(String month) {
         ArrayList<TransactionModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + TRANSACTIONS_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
@@ -305,7 +305,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public ArrayList<TransactionModel> PieYear(String year) {
         ArrayList<TransactionModel> returnList = new ArrayList<>();
-        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + TRANSACTIONS_TABLE
+        String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
                 + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
