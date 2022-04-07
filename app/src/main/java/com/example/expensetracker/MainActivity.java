@@ -40,6 +40,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Month;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<PieEntry> pieCategories;
     ArrayList<TransactionModel> pieList = new ArrayList<>();
     int[] colors;
+    NumberFormat formatter = new DecimalFormat("#0.00");
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -372,9 +375,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Log.d("expenseIncome", expense + " " + income);
-        String myExpense = "<font color=#800000>" + "Expense: "+ expense + "</font>";
-        String myIncome = "<font color=#000080>" + "Income: " + income + "</font>";
-        String myBalance = "<font color=#032254>" + "Balance: " + (income + expense) + "</font>";
+        String myExpense = "<font color=#800000>" + "Expense: "+ formatter.format(expense) + "</font>";
+        String myIncome = "<font color=#000080>" + "Income: " + formatter.format(income) + "</font>";
+        String myBalance = "<font color=#032254>" + "Balance: " + formatter.format(income + expense) + "</font>";
         txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome + "<br>" +myBalance));
     }
 
