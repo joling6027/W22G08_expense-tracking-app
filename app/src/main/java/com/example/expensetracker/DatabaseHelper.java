@@ -81,7 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         List<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE +
+                " WHERE UPPER(" + COLUMN_CATEGORY + ")= " + "UPPER('" + item + "')" +
+                " OR UPPER(" + COLUMN_NOTE + ") LIKE " + "UPPER('%" + item + "%')";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
