@@ -8,6 +8,7 @@
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_category.xml" value="0.13055555555555556" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher__background.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher_background.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/ic_launcher_et_background.xml" value="0.1" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/pie_center_background.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/drawable/rounded_corner.xml" value="0.1111111111111111" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_balance.xml" value="0.1796875" />
@@ -18,35 +19,14 @@
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/activity_splash.xml" value="0.13333333333333333" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/category_item.xml" value="0.1796875" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/keyboard.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/layout_categoryitem.xml" value="0.103125" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/layout_searchitem.xml" value="0.1796875" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/layout_toolbar.xml" value="0.103125" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/layout/toolbar.xml" value="0.1796875" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/menu/menu_search.xml" value="0.1796875" />
         <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/menu/nav_items.xml" value="0.1796875" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/bg1_selector.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/bg1_y.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/bg2_selector.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/bg_selector.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/category_backgorund.xml" value="0.1895" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/category_bg.xml" value="0.1895" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg1_n.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg1_y.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg2_n.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg2_y.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg_n.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/key_bg_y.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/keyboard_background.xml" value="0.1895" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/keyboard_bg.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/keyboard_bg1.xml" value="0.1895" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/keyboard_bg2.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/pie_center_background.xml" value="0.1895" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/drawable/selector1.xml" value="0.1" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/layout/keyboard.xml" value="0.25416666666666665" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/layout/layout_keyboard.xml" value="0.22826086956521738" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/W22G08_expense-tracking-app/app/src/main/res/layout/toolbar.xml" value="0.13858695652173914" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/newgit - Copy/app/src/main/res/layout/activity_expense.xml" value="0.12360688956433637" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/newgit - Copy/app/src/main/res/layout/activity_income.xml" value="0.12360688956433637" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/newgit - Copy/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
-        <entry key="..\:/Winter 2022/Intro to Mobile Dev/Project/newgit - Copy/app/src/main/res/layout/activity_splash.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/mipmap-anydpi-v26/ic_launcher_.xml" value="0.1" />
+        <entry key="..\:/Users/seahorse/Desktop/CIS STUDY/semester 3/CSIS 3175 Intro to Mobile App/group_project/expense-tracker/app/src/main/res/mipmap-anydpi-v26/ic_launcher__round.xml" value="0.1" />
       </map>
     </option>
   </component>

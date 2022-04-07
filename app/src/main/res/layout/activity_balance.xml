@@ -51,7 +51,7 @@
             android:layout_weight="0.2"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Categary"
+            android:text="Category"
             android:textColor="@android:color/white" />
 
         <TextView

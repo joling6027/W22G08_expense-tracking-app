@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
-            android:text="Categary"
+            android:text="Category"
             android:textColor="@android:color/white" />
 
         <TextView

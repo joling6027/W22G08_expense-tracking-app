@@ -7,6 +7,7 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -42,15 +43,19 @@ public class SearchActivity extends AppCompatActivity {
         try {
             if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
                 query = getIntent().getStringExtra(SearchManager.QUERY);
-                Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SearchActivity.this, query, Toast.LENGTH_SHORT).show();
                 populateList = databaseHelper.getSearchedData(query);
+                if(populateList.size() < 1){
+                    Toast.makeText(SearchActivity.this, "No Data Found", Toast.LENGTH_SHORT).show();
+                }else{
+                    SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
+                    listViewResults.setAdapter(searchListAdapter);
+                }
 
-                SearchListAdapter searchListAdapter = new SearchListAdapter(populateList);
-                listViewResults.setAdapter(searchListAdapter);
             }
 
         }catch (Exception ex){
-            Toast.makeText(SearchActivity.this, "Data Not Found", Toast.LENGTH_SHORT).show();
+            Log.d("DBERROR",ex.getMessage());
             ex.printStackTrace();
         }
 

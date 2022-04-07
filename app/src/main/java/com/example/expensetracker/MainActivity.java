@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -340,10 +341,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemActionCollapse(MenuItem menuItem) {
                 imgViewTitle.setVisibility(View.VISIBLE);
-
+                simpleSearchView.clearFocus();
                 return true;
             }
         });
+
         return true;
 
     }

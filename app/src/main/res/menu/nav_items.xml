@@ -13,7 +13,7 @@
             android:title="Year" />
         <item
             android:id="@+id/day"
-            android:title="choose a day" />
+            android:title="Choose a day" />
 
     </group>
 </menu>

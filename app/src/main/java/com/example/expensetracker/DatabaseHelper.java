@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     Context context;
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "data1.db", null, 1);
+        super(context, "data.db", null, 1);
     }
 
     @Override
@@ -189,7 +189,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE +
+                " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'" + " ORDER BY " + COLUMN_DATE + " ASC";
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -227,7 +228,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //create an empty arrayList
         ArrayList<TransactionModel> returnList = new ArrayList<>();
         //search query
-        String queryString = "SELECT * FROM " + EXPENSE_TABLE + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'";
+        String queryString = "SELECT * FROM " + EXPENSE_TABLE +
+                " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'" + " ORDER BY " + COLUMN_DATE + " ASC";
         Log.d("updateMonth", queryString);
         SQLiteDatabase db = this.getReadableDatabase();
 

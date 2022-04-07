@@ -1,5 +1,6 @@
 package com.example.expensetracker;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,13 @@ public class SearchListAdapter extends BaseAdapter {
             txtViewCategory.setText(searchedList.get(i).getCategory());
             txtViewDate.setText(dateFormat.format(searchedList.get(i).getDate()));
             txtViewNote.setText(searchedList.get(i).getNote());
-            txtViewAmount.setText(Double.toString(searchedList.get(i).getAmount()));
+            double amount = searchedList.get(i).getAmount();
+            txtViewAmount.setText(Double.toString(amount));
+            if (amount < 0){
+                txtViewAmount.setTextColor(Color.RED);
+            }else{
+                txtViewAmount.setTextColor(Color.BLUE);
+            }
 
         return view;
     }
