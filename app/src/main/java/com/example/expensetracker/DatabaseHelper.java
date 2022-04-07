@@ -262,7 +262,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " = " + "'" + dateFormat.format(today) + "'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
-                + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
+                + " NOT LIKE " + "'%deposit%'" + " GROUP BY " + COLUMN_CATEGORY;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToFirst()) {
@@ -285,7 +285,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'_____" + month + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
-                + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
+                + " NOT LIKE " + "'%deposit%'" + " GROUP BY " + COLUMN_CATEGORY;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToFirst()) {
@@ -308,7 +308,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String queryString = " SELECT COLUMN_CATEGORY, SUM(abs(COLUMN_AMOUNT)) FROM " + EXPENSE_TABLE
                 + " WHERE " + COLUMN_DATE + " LIKE" + "'" + year + "%'" + " AND "
                 + COLUMN_CATEGORY + " NOT LIKE " + "'%salary%'" + " AND " + COLUMN_CATEGORY
-                + " NOT LIKE " + "'deposit'" + " GROUP BY " + COLUMN_CATEGORY;
+                + " NOT LIKE " + "'%deposit%'" + " GROUP BY " + COLUMN_CATEGORY;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
         if (cursor.moveToFirst()) {
