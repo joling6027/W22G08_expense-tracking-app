@@ -8,11 +8,11 @@
     <string name="imgViewPaymentMethod">Payment method image</string>
     <string name="txtCanadianCurrency">CAD</string>
     <string name="txtViewPaymentMethod">Payment method</string>
-    <string name="editTxtNotes">Notes</string>
+    <string name="editTxtNotes">Enter notes (Optional)</string>
     <string name="btnChooseCategory">Choose Category</string>
     <string name="txtViewExpensePageTitle">ADD EXPENSE</string>
     <string name="txtViewIncomePageTitle">ADD INCOME</string>
-    <string name="search_hint">input categary to find</string>
+    <string name="search_hint">input category to find</string>
     <string name="txtWelcomepage">Loading...</string>
     <string name="txtBalanceSheetTitle">BALANCE SHEET</string>
 </resources>
