@@ -372,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("expenseIncome", expense + " " + income);
         String myExpense = "<font color=#800000>" + "Expense: "+ expense + "</font>";
         String myIncome = "<font color=#000080>" + "Income: " + income + "</font>";
-        String myBalance = "<font color=#032254>" + "Balance: " + (income - expense) + "</font>";
+        String myBalance = "<font color=#032254>" + "Balance: " + (income + expense) + "</font>";
         txtViewSummary.setText(Html.fromHtml(myExpense + "<br>" + myIncome + "<br>" +myBalance));
     }
 
