@@ -34,7 +34,7 @@ This page allows user to insert their source of income. User can use it in the s
 At the action bar of the main page, while clicking on the search button and insert the category name in the search bar, 
 it redirects you to the search page which shows all the details under specific category. Data can be deleted simply by click on the item.
 
-![alt text](https://github.com/joling6027/W22G08_expense-tracking-app/blob/main/app/src/main/res/drawable/search_page.png "search page example)
+![alt text](https://github.com/joling6027/W22G08_expense-tracking-app/blob/main/app/src/main/res/drawable/search_page.png "search page")
 
 ## Technical Concepts used
 - ListView
