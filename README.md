@@ -45,7 +45,7 @@ it redirects you to the search page which shows all the details under specific c
 - CircleView
 - SqliteOpenHelper
 - Menu
-- NavigationBbar/ Drawer layout
+- NavigationBar/ Drawer layout
 - Relatice Layout
 - Pie Chart (source: https://github.com/PhilJay/MPAndroidChart)
 - SearchView
