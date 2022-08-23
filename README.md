@@ -19,6 +19,7 @@ While clicking on the icon of the category, if there are some expenses and incom
 
 This page allows user to insert expense details. 
 By selecting date and category, users can input data into the local database and the corresponding expense will be shown on the main page pie chart.
+
 ![alt text](https://github.com/joling6027/W22G08_expense-tracking-app/blob/main/app/src/main/res/drawable/expense_page.png "expense page calculator view")
 ![alt text](https://github.com/joling6027/W22G08_expense-tracking-app/blob/main/app/src/main/res/drawable/expense_page_cat.png "expense page with category")
 
